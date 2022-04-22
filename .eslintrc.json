@@ -9,5 +9,16 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "rules": {}
+  "rules": {
+    "prefer-const": "error",
+    "semi": ["error", "always"],
+    "no-var": "error",
+    "comma-dangle": ["error", {
+      "arrays": "always",
+      "objects": "always",
+      "imports": "never",
+      "exports": "never",
+      "functions": "never"
+    }]
+  }
 }
