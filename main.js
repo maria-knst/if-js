@@ -1,52 +1,52 @@
-let user = 'John Doe';
-console.log(user);
-
-const student = 'Maria';
-console.log(student);
-
-user = student; // user = "Maria"
-console.log(user);
-console.log('__________');
-
-let test = 1;
-console.log(test);
-
-++test;
-console.log(test);
-
-test += '1'; // test = 21
-console.log(test);
-
-test -= 1; //test = 20
-console.log(test);
-
-test = !!test; // test = true
-console.log(test);
-console.log('__________');
-
-const arr = [2, 3, 5, 8];
-let res = 1;
-
-for (let i = 0; i < arr.length; i++) {
-  res *= arr[i];
-}
-
-console.log(res);
-console.log('__________');
-
-const arr1 = [2, 5, 8, 15, 0, 6, 20, 3];
-for (let i = 0; i < arr1.length; i++) {
-  if (arr1[i] >= 5 && arr1[i] < 10) {
-    console.log(arr1[i]);
+(function () {
+  //Task1
+  function palindrom(str) {
+    for (let i = 0; i < str.length / 2; i++) {
+      if (str[i] !== str[str.length - 1 - i]) {
+        return false;
+      }
+    }
+    return true;
   }
-}
-console.log('__________');
 
-const arr2 = [2, 5, 8, 15, 0, 6, 20, 3];
+  //Task2
+  const min = (a, b) => {
+    if (a > b) {
+      return b;
+    }
+    return a;
+  };
+  const max = (a, b) => {
+    if (a > b) {
+      return a;
+    }
+    return b;
+  };
+  //conditional operator
+  const min1 = (a, b) => (a > b ? b : a);
+  const max1 = (a, b) => (a > b ? a : b);
 
-for (let i = 0; i < arr2.length; i++) {
-  if (arr2[i] % 2 === 0) {
-    console.log(arr2[i]);
-  }
-}
-console.log('__________');
+  //Task3
+  const arr = [12, 52, 20, 18, 22, 100, 43, 57, 50, 0, 1];
+  let flag = false;
+
+  const changeZero = (arr) => {
+    for (let i = 0; i < arr.length; i++) {
+      let newNum = '';
+      const res = String(arr[i]);
+      for (let j = 0; j < res.length; j++) {
+        if (res[j] === '0') {
+          newNum += 'zero';
+          flag = true;
+        } else {
+          newNum += res[j];
+        }
+      }
+      if (flag === true) {
+        arr[i] = newNum;
+        flag = false;
+      }
+    }
+    return arr;
+  };
+})();
