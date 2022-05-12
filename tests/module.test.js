@@ -1,12 +1,21 @@
 import { sum, getColor } from '../module';
 import { randNumber, randProductMaterial } from '@ngneat/falso';
 
-test('Expected number', () => {
-  expect(sum(randNumber())(randNumber())).not.toBeNaN();
-  expect(sum(randNumber())(randProductMaterial())).toBeFalsy();
-  expect(sum(randProductMaterial())(randNumber())).toBeFalsy();
+
+describe('Color function check', () => {
+  test('Expected number', () => {
+    expect(sum(randNumber())(randNumber())).not.toBeNaN();
+  });
+  test('Expected false with parameters (number)(string)', () => {
+    expect(sum(randNumber())(randProductMaterial())).toBeFalsy();
+  });
+  test('Expected false with parameters (string)(number)', () => {
+    expect(sum(randProductMaterial())(randNumber())).toBeFalsy();
+  });
 });
 
-test('Checked elements', () => {
-  expect(getColor(randNumber())).toBeDefined();
+describe('Sum function check', () => {
+  test('Checked elements', () => {
+    expect(getColor(randNumber())).toBeDefined();
+  });
 });

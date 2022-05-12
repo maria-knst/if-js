@@ -2,7 +2,6 @@ import { sum, getColor } from './module.js';
 
 console.log(sum(4)(3));
 
-
 const text1 = document.getElementById('text1');
 const text2 = document.getElementById('text2');
 const text3 = document.getElementById('text3');
