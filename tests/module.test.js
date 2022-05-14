@@ -1,7 +1,6 @@
 import { sum, getColor } from '../module';
 import { randNumber, randProductMaterial } from '@ngneat/falso';
 
-
 describe('Color function check', () => {
   test('Expected number', () => {
     expect(sum(randNumber())(randNumber())).not.toBeNaN();
