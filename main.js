@@ -1,50 +1,26 @@
-//Task1
-function palindrom(str) {
-  for (let i = 0; i < str.length / 2; i++) {
-    if (str[i] !== str[str.length - 1 - i]) {
-      return false;
-    }
-  }
-  return true;
-}
+import { sum, getColor } from './module.js';
 
-//Task2
-const min = (a, b) => {
-  if (a > b) {
-    return b;
-  }
-  return a;
-};
-const max = (a, b) => {
-  if (a > b) {
-    return a;
-  }
-  return b;
-};
-//conditional operator
-const min1 = (a, b) => (a > b ? b : a);
-const max1 = (a, b) => (a > b ? a : b);
+console.log(sum(4)(3));
 
-//Task3
-const arr = [12, 52, 20, 18, 22, 100, 43, 57, 50, 0, 1];
-let flag = false;
+const text1 = document.getElementById('text1');
+const text2 = document.getElementById('text2');
+const text3 = document.getElementById('text3');
 
-const changeZero = (arr) => {
-  for (let i = 0; i < arr.length; i++) {
-    let newNum = '';
-    const res = String(arr[i]);
-    for (let j = 0; j < res.length; j++) {
-      if (res[j] === '0') {
-        newNum += 'zero';
-        flag = true;
-      } else {
-        newNum += res[j];
-      }
-    }
-    if (flag === true) {
-      arr[i] = newNum;
-      flag = false;
-    }
-  }
-  return arr;
-};
+let count1 = 0;
+let count2 = 0;
+let count3 = 0;
+
+text1.addEventListener('click', (event) => {
+  event.target.style.color = getColor(count1);
+  count1++;
+});
+
+text2.addEventListener('click', (event) => {
+  event.target.style.color = getColor(count2);
+  count2++;
+});
+
+text3.addEventListener('click', (event) => {
+  event.target.style.color = getColor(count3);
+  count3++;
+});
