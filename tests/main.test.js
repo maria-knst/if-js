@@ -7,4 +7,7 @@ describe('Check data format', () => {
   test('Data test 2', () => {
     expect(changeDate('2022-05-17')).toMatch(/(\d+)\.(\d+)\.(\d+)/);
   });
+  test('Data test 3', () => {
+    expect(changeDate('Hello world')).toBe(false);
+  });
 });
