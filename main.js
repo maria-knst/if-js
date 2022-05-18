@@ -53,8 +53,13 @@ const data = [
   },
 ];
 
+const str1 ='';
+
 export function getMatchedElements(str1) {
   const arr = [];
+  if(str1 === ''){
+    return arr;
+  }
   const regex1 = new RegExp(`${str1}`, 'i');
   for (let i = 0; i < data.length; i++) {
     if (
@@ -67,3 +72,5 @@ export function getMatchedElements(str1) {
   }
   return arr;
 }
+
+console.log(getMatchedElements(str1));

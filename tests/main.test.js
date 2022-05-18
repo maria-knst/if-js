@@ -14,9 +14,18 @@ describe('Check data format', () => {
 
 describe('Check "find substring"-function', () => {
   test('Check "berlin"', () => {
-    expect(getMatchedElements('berlin')).toEqual(['Germany, Berlin, Hotel Friendship', 'Germany, Berlin, Hotel Rehberge Berlin Mitte']);
+    expect(getMatchedElements('berlin')).toEqual([
+      'Germany, Berlin, Hotel Friendship',
+      'Germany, Berlin, Hotel Rehberge Berlin Mitte',
+    ]);
   });
   test('Check "aint"', () => {
-    expect(getMatchedElements('aint')).toEqual(['Russia, Saint Petersburg, Hotel Leopold', 'Slowakia, Vysokie Tatry, Villa Kunerad AinT']);
+    expect(getMatchedElements('aint')).toEqual([
+      'Russia, Saint Petersburg, Hotel Leopold',
+      'Slowakia, Vysokie Tatry, Villa Kunerad AinT',
+    ]);
+  });
+  test('Check ""', () => {
+    expect(getMatchedElements('')).toEqual([]);
   });
 });
