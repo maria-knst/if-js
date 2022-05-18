@@ -1,4 +1,4 @@
-import { changeDate } from '../main';
+import { changeDate, getMatchedElements } from '../main';
 
 describe('Check data format', () => {
   test('Data test 1', () => {
@@ -9,5 +9,14 @@ describe('Check data format', () => {
   });
   test('Data test 3', () => {
     expect(changeDate('Hello world')).toBe(false);
+  });
+});
+
+describe('Check "find substring"-function', () => {
+  test('Check "berlin"', () => {
+    expect(getMatchedElements('berlin')).toEqual(['Germany, Berlin, Hotel Friendship', 'Germany, Berlin, Hotel Rehberge Berlin Mitte']);
+  });
+  test('Check "aint"', () => {
+    expect(getMatchedElements('aint')).toEqual(['Russia, Saint Petersburg, Hotel Leopold', 'Slowakia, Vysokie Tatry, Villa Kunerad AinT']);
   });
 });
