@@ -337,7 +337,6 @@ const data = [
     country: 'Germany',
   },
 ];
-const res = new Object();
 
 const result = data.reduce((acc, item) => {
   if (typeof acc[item.country] === 'object') {
