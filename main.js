@@ -1,76 +1,378 @@
 //Task1
-export function changeDate(date) {
-  if (!/(\d{4})-(\d{2})-(\d{2})/.test(date)) {
-    return false;
-  }
-  const regex = /(\d+)\.(\d+)\.(\d+)/;
-  const newStr = date.replace(/-/g, '.');
-  const result = newStr.replace(regex, '$3.$2.$1');
-  return result;
+export function palindrom(str) {
+  const newStr = str.split('').reverse().join('');
+  return str === newStr ? true : false;
 }
 
 //Task2
-const data = [
+const hotels = [
   {
-    country: 'Russia',
+    name: 'Hotel Leopold',
     city: 'Saint Petersburg',
-    hotel: 'Hotel Leopold',
+    country: 'Russia',
   },
   {
+    name: 'Apartment Sunshine',
+    city: 'Santa Cruz de Tenerife',
     country: 'Spain',
-    city: 'Santa Cruz de Tererife',
-    hotel: 'Apartment Sunshine',
   },
   {
-    country: 'Slowakia',
+    name: 'Villa Kunerad',
     city: 'Vysokie Tatry',
-    hotel: 'Villa Kunerad AinT',
+    country: 'Slowakia',
   },
   {
-    country: 'Germany',
+    name: 'Hostel Friendship',
     city: 'Berlin',
-    hotel: 'Hotel Friendship',
+    country: 'Germany',
   },
   {
+    name: 'Radisson Blu Hotel',
+    city: 'Kyiv',
+    country: 'Ukraine',
+  },
+  {
+    name: 'Paradise Hotel',
+    city: 'Guadalupe',
+    country: 'Mexico',
+  },
+  {
+    name: 'Hotel Grindewald',
+    city: 'Interlaken',
+    country: 'Switzerland',
+  },
+  {
+    name: 'The Andaman Resort',
+    city: 'Port Dickson',
+    country: 'Malaysia',
+  },
+  {
+    name: 'Virgin Hotel',
+    city: 'Chicago',
+    country: 'USA',
+  },
+  {
+    name: 'Grand Beach Resort',
+    city: 'Dubai',
+    country: 'United Arab Emirates',
+  },
+  {
+    name: 'Shilla Stay',
+    city: 'Seoul',
+    country: 'South Korea',
+  },
+  {
+    name: 'San Firenze Suites',
+    city: 'Florence',
+    country: 'Italy',
+  },
+  {
+    name: 'Black Penny Villas',
+    city: 'BTDC, Nuca Dua',
     country: 'Indonesia',
-    city: 'Bali',
-    hotel: 'Ubud Bali Resort&SPA',
   },
   {
+    name: 'Koko Hotel',
+    city: 'Tokyo',
+    country: 'Japan',
+  },
+  {
+    name: 'Ramada Plaza',
+    city: 'Istanbul',
+    country: 'Turkey',
+  },
+  {
+    name: 'Waikiki Resort Hotel',
+    city: 'Hawaii',
+    country: 'USA',
+  },
+  {
+    name: 'Puro Hotel',
+    city: 'Krakow',
+    country: 'Poland',
+  },
+  {
+    name: 'Asma Suites',
+    city: 'Santorini',
+    country: 'Greece',
+  },
+  {
+    name: 'Cityden Apartments',
+    city: 'Amsterdam',
     country: 'Netherlands',
-    city: 'Rotterdam',
-    hotel: 'King Kong Hostel',
   },
   {
-    country: 'Marocco',
-    city: 'Ourika',
-    hotel: 'Rokoko Hotel',
+    name: 'Mandarin Oriental',
+    city: 'Miami',
+    country: 'USA',
   },
   {
+    name: 'Concept Terrace Hotel',
+    city: 'Rome',
+    country: 'Italy',
+  },
+  {
+    name: 'Ponta Mar Hotel',
+    city: 'Fortaleza',
+    country: 'Brazil',
+  },
+  {
+    name: 'Four Seasons Hotel',
+    city: 'Sydney',
+    country: 'Australia',
+  },
+  {
+    name: 'Le Meridien',
+    city: 'Nice',
+    country: 'France',
+  },
+  {
+    name: 'Apart Neptun',
+    city: 'Gdansk',
+    country: 'Poland',
+  },
+  {
+    name: 'Lux Isla',
+    city: 'Ibiza',
+    country: 'Spain',
+  },
+  {
+    name: 'Nox Hostel',
+    city: 'London',
+    country: 'UK',
+  },
+  {
+    name: 'Leonardo Vienna',
+    city: 'Vienna',
+    country: 'Austria',
+  },
+  {
+    name: 'Adagio Aparthotel',
+    city: 'Edinburgh',
+    country: 'UK',
+  },
+  {
+    name: 'Steigenberger Hotel',
+    city: 'Hamburg',
     country: 'Germany',
-    city: 'Berlin',
-    hotel: 'Hotel Rehberge Berlin Mitte',
   },
 ];
 
-const str1 ='';
-
 export function getMatchedElements(str1) {
   const arr = [];
-  if(str1 === ''){
+  if (str1 === '') {
     return arr;
   }
+
   const regex1 = new RegExp(`${str1}`, 'i');
-  for (let i = 0; i < data.length; i++) {
-    if (
-      regex1.test(data[i].country) ||
-      regex1.test(data[i].city) ||
-      regex1.test(data[i].hotel)
-    ) {
-      arr.push(data[i].country + ', ' + data[i].city + ', ' + data[i].hotel);
-    }
-  }
+  const newHotels = hotels.filter(
+    (item) =>
+      regex1.test(item.country) ||
+      regex1.test(item.city) ||
+      regex1.test(item.hotel),
+  );
+
+  newHotels.forEach((item) => {
+    arr.push(item.country + ', ' + item.city + ', ' + item.name);
+  });
+
   return arr;
 }
 
-console.log(getMatchedElements(str1));
+//Task3
+const data = [
+  {
+    name: 'Hotel Leopold',
+    city: 'Saint Petersburg',
+    country: 'Russia',
+  },
+  {
+    name: 'Apartment Sunshine',
+    city: 'Santa Cruz de Tenerife',
+    country: 'Spain',
+  },
+  {
+    name: 'Villa Kunerad',
+    city: 'Vysokie Tatry',
+    country: 'Slowakia',
+  },
+  {
+    name: 'Hostel Friendship',
+    city: 'Berlin',
+    country: 'Germany',
+  },
+  {
+    name: 'Radisson Blu Hotel',
+    city: 'Kyiv',
+    country: 'Ukraine',
+  },
+  {
+    name: 'Paradise Hotel',
+    city: 'Guadalupe',
+    country: 'Mexico',
+  },
+  {
+    name: 'Hotel Grindewald',
+    city: 'Interlaken',
+    country: 'Switzerland',
+  },
+  {
+    name: 'The Andaman Resort',
+    city: 'Port Dickson',
+    country: 'Malaysia',
+  },
+  {
+    name: 'Virgin Hotel',
+    city: 'Chicago',
+    country: 'USA',
+  },
+  {
+    name: 'Grand Beach Resort',
+    city: 'Dubai',
+    country: 'United Arab Emirates',
+  },
+  {
+    name: 'Shilla Stay',
+    city: 'Seoul',
+    country: 'South Korea',
+  },
+  {
+    name: 'San Firenze Suites',
+    city: 'Florence',
+    country: 'Italy',
+  },
+  {
+    name: 'The Andaman Resort',
+    city: 'Port Dickson',
+    country: 'Malaysia',
+  },
+  {
+    name: 'Black Penny Villas',
+    city: 'BTDC, Nuca Dua',
+    country: 'Indonesia',
+  },
+  {
+    name: 'Koko Hotel',
+    city: 'Tokyo',
+    country: 'Japan',
+  },
+  {
+    name: 'Ramada Plaza',
+    city: 'Istanbul',
+    country: 'Turkey',
+  },
+  {
+    name: 'Waikiki Resort Hotel',
+    city: 'Hawaii',
+    country: 'USA',
+  },
+  {
+    name: 'Puro Hotel',
+    city: 'Krakow',
+    country: 'Poland',
+  },
+  {
+    name: 'Asma Suites',
+    city: 'Santorini',
+    country: 'Greece',
+  },
+  {
+    name: 'Cityden Apartments',
+    city: 'Amsterdam',
+    country: 'Netherlands',
+  },
+  {
+    name: 'Mandarin Oriental',
+    city: 'Miami',
+    country: 'USA',
+  },
+  {
+    name: 'Concept Terrace Hotel',
+    city: 'Rome',
+    country: 'Italy',
+  },
+  {
+    name: 'Ponta Mar Hotel',
+    city: 'Fortaleza',
+    country: 'Brazil',
+  },
+  {
+    name: 'Four Seasons Hotel',
+    city: 'Sydney',
+    country: 'Australia',
+  },
+  {
+    name: 'Le Meridien',
+    city: 'Nice',
+    country: 'France',
+  },
+  {
+    name: 'Apart Neptun',
+    city: 'Gdansk',
+    country: 'Poland',
+  },
+  {
+    name: 'Lux Isla',
+    city: 'Ibiza',
+    country: 'Spain',
+  },
+  {
+    name: 'Nox Hostel',
+    city: 'London',
+    country: 'UK',
+  },
+  {
+    name: 'Leonardo Vienna',
+    city: 'Vienna',
+    country: 'Austria',
+  },
+  {
+    name: 'Adagio Aparthotel',
+    city: 'Edinburgh',
+    country: 'UK',
+  },
+  {
+    name: 'Steigenberger Hotel',
+    city: 'Hamburg',
+    country: 'Germany',
+  },
+];
+
+const result = data.reduce((acc, item) => {
+  if (typeof acc[item.country] === 'object') {
+    acc[item.country].push(item.city);
+  } else {
+    acc[item.country] = [item.city];
+  }
+  return acc;
+}, {});
+
+//Task4
+export function getCalendarMonth(daysInMonth, daysInWeek, dayOfWeek) {
+  if (dayOfWeek >= daysInWeek) {
+    return false;
+  }
+  let count = daysInMonth - dayOfWeek + 1;
+  const matrix = new Array(Math.ceil(daysInMonth / 7));
+  for (let i = 0; i < matrix.length; i++) {
+    matrix[i] = new Array(daysInWeek);
+  }
+
+  for (let i = 0; i < Math.ceil(daysInMonth / daysInWeek); i++) {
+    for (let j = 0; j < daysInWeek; j++) {
+      if (count % daysInMonth === 0) {
+        matrix[i][j] = daysInMonth;
+      } else {
+        matrix[i][j] = count % daysInMonth;
+      }
+      count++;
+    }
+  }
+
+  return matrix;
+}
+
+const daysInMonth = 30;
+const daysInWeek = 7;
+const dayOfWeek = 4;
+const calendarMonth = getCalendarMonth(daysInMonth, daysInWeek, dayOfWeek);
