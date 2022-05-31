@@ -1,4 +1,52 @@
 //Task1
+const obj1 = {
+  a: 'a',
+  b: {
+    a: 'a',
+    b: 'b',
+    c: { a: 1 },
+  },
+};
+const obj2 = {
+  b: {
+    c: { a: 1, },
+    b: 'b',
+    a: 'a',
+  },
+  a: 'a',
+};
+const obj3 = {
+  a: {
+    c: { a: 'a', },
+    b: 'b',
+    a: 'a',
+  },
+  b: 'b',
+};
+
+
+const first = { f: 1, s: 2};
+const second = { f: 1, s: 2};
+
+export const deepEqual = (object1, object2) => {
+    for(const key in object1){
+      if(key in object2){
+        if(typeof object1[key] === 'object' && typeof object2[key] === 'object'){
+          deepEqual(object1[key], object2[key]); //рекурсия
+        }
+        else if(typeof object1[key]  !== typeof object2[key]){
+          return false; // если ключи не равны
+        }
+      }
+      else {
+        return false; // нет совпадений по ключам
+      }
+    }
+
+  return true;
+}
+
+console.log(deepEqual(obj2, obj3));
 
 
 
@@ -17,11 +65,21 @@ export function getCalendarMonth(daysInMonth, daysInWeek, dayOfWeek) {
   for (let i = 0; i < Math.ceil(daysInMonth / daysInWeek); i++) {
     for (let j = 0; j < daysInWeek; j++) {
       if (count % daysInMonth === 0) {
-        matrix[i][j] = {'daysInMonth': daysInMonth, 'notCurrentMonth': !start, 'selectedDay': false};
+        matrix[i][j] = {
+          daysInMonth: daysInMonth,
+          notCurrentMonth: !start,
+          selectedDay: false,
+        };
         start = false; // означет, что месяц закончился
       } else {
-        if(count % daysInMonth === 1 && i === 0){ start = true; } // начало месяца обязательно будет на первой строчке
-        matrix[i][j] = {'daysInMonth': count % daysInMonth, 'notCurrentMonth': !start, 'selectedDay': false};
+        if (count % daysInMonth === 1 && i === 0) {
+          start = true;
+        } // начало месяца обязательно будет на первой строчке
+        matrix[i][j] = {
+          daysInMonth: count % daysInMonth,
+          notCurrentMonth: !start,
+          selectedDay: false,
+        };
       }
       count++;
     }
@@ -34,4 +92,3 @@ const daysInMonth = 30;
 const daysInWeek = 7;
 const dayOfWeek = 4;
 const calendarMonth = getCalendarMonth(daysInMonth, daysInWeek, dayOfWeek);
-

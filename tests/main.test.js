@@ -1,4 +1,52 @@
-import { getCalendarMonth } from '../main';
+import { deepEqual, getCalendarMonth } from '../main';
+
+describe('Check deep equal function', () => {
+  const obj1 = {
+    a: 'a',
+    b: {
+      a: 'a',
+      b: 'b',
+      c: { a: 1 },
+    },
+  };
+  const obj2 = {
+    b: {
+      c: { a: 1, },
+      b: 'b',
+      a: 'a',
+    },
+    a: 'a',
+  };
+  const obj3 = {
+    a: {
+      c: { a: 'a', },
+      b: 'b',
+      a: 'a',
+    },
+    b: 'b',
+  };
+  const obj4 = {
+    f: {
+      c: { a: 1, },
+      b: 'b',
+      a: 'a',
+    },
+    a: 'a',
+  };
+
+  test('Check same objects', () => {
+    expect(deepEqual(obj1, obj2)).toBe(true);
+  });
+  test('Check different objects 1', () => {
+    expect(deepEqual(obj1, obj3)).toBe(false);
+  });
+  test('Check different objects 2', () => {
+    expect(deepEqual(obj2, obj3)).toBe(false);
+  });
+  test('Check different objects 3', () => {
+    expect(deepEqual(obj4, obj3)).toBe(false);
+  });
+});
 
 describe('Check getCalendarMonth-function', () => {
   const arr1 = [
