@@ -9,7 +9,7 @@ const obj1 = {
 };
 const obj2 = {
   b: {
-    c: { a: 1, },
+    c: { a: 1 },
     b: 'b',
     a: 'a',
   },
@@ -17,38 +17,34 @@ const obj2 = {
 };
 const obj3 = {
   a: {
-    c: { a: 'a', },
+    c: { a: 'a' },
     b: 'b',
     a: 'a',
   },
   b: 'b',
 };
 
-
-const first = { f: 1, s: 2};
-const second = { f: 1, s: 2};
-
 export const deepEqual = (object1, object2) => {
-    for(const key in object1){
-      if(key in object2){
-        if(typeof object1[key] === 'object' && typeof object2[key] === 'object'){
-          deepEqual(object1[key], object2[key]); //рекурсия
-        }
-        else if(typeof object1[key]  !== typeof object2[key]){
-          return false; // если ключи не равны
-        }
+  for (const key in object1) {
+    if (key in object2) {
+      if (
+        typeof object1[key] === 'object' &&
+        typeof object2[key] === 'object'
+      ) {
+        deepEqual(object1[key], object2[key]); //recursion
+      } else if (typeof object1[key] !== typeof object2[key]) {
+        return false; // if keys are not equal
       }
-      else {
-        return false; // нет совпадений по ключам
-      }
+    } else {
+      return false; // no key matches
     }
+  }
 
   return true;
-}
+};
 
-console.log(deepEqual(obj2, obj3));
-
-
+deepEqual(obj1, obj2);
+deepEqual(obj1, obj3);
 
 //Task2
 export function getCalendarMonth(daysInMonth, daysInWeek, dayOfWeek) {
@@ -61,23 +57,23 @@ export function getCalendarMonth(daysInMonth, daysInWeek, dayOfWeek) {
     matrix[i] = new Array(daysInWeek);
   }
 
-  let start = false; // показывает начался ли месяц
+  let start = false; // if month is start
   for (let i = 0; i < Math.ceil(daysInMonth / daysInWeek); i++) {
     for (let j = 0; j < daysInWeek; j++) {
       if (count % daysInMonth === 0) {
         matrix[i][j] = {
           daysInMonth: daysInMonth,
-          notCurrentMonth: !start,
+          isCurrentMonth: start,
           selectedDay: false,
         };
-        start = false; // означет, что месяц закончился
+        start = false; // month is over
       } else {
         if (count % daysInMonth === 1 && i === 0) {
           start = true;
-        } // начало месяца обязательно будет на первой строчке
+        } // the beginning of the month on the first line
         matrix[i][j] = {
           daysInMonth: count % daysInMonth,
-          notCurrentMonth: !start,
+          isCurrentMonth: start,
           selectedDay: false,
         };
       }

@@ -11,7 +11,7 @@ describe('Check deep equal function', () => {
   };
   const obj2 = {
     b: {
-      c: { a: 1, },
+      c: { a: 1 },
       b: 'b',
       a: 'a',
     },
@@ -19,7 +19,7 @@ describe('Check deep equal function', () => {
   };
   const obj3 = {
     a: {
-      c: { a: 'a', },
+      c: { a: 'a' },
       b: 'b',
       a: 'a',
     },
@@ -27,7 +27,7 @@ describe('Check deep equal function', () => {
   };
   const obj4 = {
     f: {
-      c: { a: 1, },
+      c: { a: 1 },
       b: 'b',
       a: 'a',
     },
@@ -51,49 +51,49 @@ describe('Check deep equal function', () => {
 describe('Check getCalendarMonth-function', () => {
   const arr1 = [
     [
-      { daysInMonth: 27, notCurrentMonth: true, selectedDay: false },
-      { daysInMonth: 28, notCurrentMonth: true, selectedDay: false },
-      { daysInMonth: 29, notCurrentMonth: true, selectedDay: false },
-      { daysInMonth: 30, notCurrentMonth: true, selectedDay: false },
-      { daysInMonth: 1, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 2, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 3, notCurrentMonth: false, selectedDay: false },
+      { daysInMonth: 27, isCurrentMonth: false, selectedDay: false },
+      { daysInMonth: 28, isCurrentMonth: false, selectedDay: false },
+      { daysInMonth: 29, isCurrentMonth: false, selectedDay: false },
+      { daysInMonth: 30, isCurrentMonth: false, selectedDay: false },
+      { daysInMonth: 1, isCurrentMonth: true, selectedDay: false },
+      { daysInMonth: 2, isCurrentMonth: true, selectedDay: false },
+      { daysInMonth: 3, isCurrentMonth: true, selectedDay: false },
     ],
     [
-      { daysInMonth: 4, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 5, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 6, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 7, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 8, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 9, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 10, notCurrentMonth: false, selectedDay: false },
+      { daysInMonth: 4, isCurrentMonth: true, selectedDay: false },
+      { daysInMonth: 5, isCurrentMonth: true, selectedDay: false },
+      { daysInMonth: 6, isCurrentMonth: true, selectedDay: false },
+      { daysInMonth: 7, isCurrentMonth: true, selectedDay: false },
+      { daysInMonth: 8, isCurrentMonth: true, selectedDay: false },
+      { daysInMonth: 9, isCurrentMonth: true, selectedDay: false },
+      { daysInMonth: 10, isCurrentMonth: true, selectedDay: false },
     ],
     [
-      { daysInMonth: 11, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 12, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 13, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 14, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 15, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 16, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 17, notCurrentMonth: false, selectedDay: false },
+      { daysInMonth: 11, isCurrentMonth: true, selectedDay: false },
+      { daysInMonth: 12, isCurrentMonth: true, selectedDay: false },
+      { daysInMonth: 13, isCurrentMonth: true, selectedDay: false },
+      { daysInMonth: 14, isCurrentMonth: true, selectedDay: false },
+      { daysInMonth: 15, isCurrentMonth: true, selectedDay: false },
+      { daysInMonth: 16, isCurrentMonth: true, selectedDay: false },
+      { daysInMonth: 17, isCurrentMonth: true, selectedDay: false },
     ],
     [
-      { daysInMonth: 18, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 19, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 20, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 21, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 22, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 23, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 24, notCurrentMonth: false, selectedDay: false },
+      { daysInMonth: 18, isCurrentMonth: true, selectedDay: false },
+      { daysInMonth: 19, isCurrentMonth: true, selectedDay: false },
+      { daysInMonth: 20, isCurrentMonth: true, selectedDay: false },
+      { daysInMonth: 21, isCurrentMonth: true, selectedDay: false },
+      { daysInMonth: 22, isCurrentMonth: true, selectedDay: false },
+      { daysInMonth: 23, isCurrentMonth: true, selectedDay: false },
+      { daysInMonth: 24, isCurrentMonth: true, selectedDay: false },
     ],
     [
-      { daysInMonth: 25, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 26, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 27, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 28, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 29, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 30, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 1, notCurrentMonth: true, selectedDay: false },
+      { daysInMonth: 25, isCurrentMonth: true, selectedDay: false },
+      { daysInMonth: 26, isCurrentMonth: true, selectedDay: false },
+      { daysInMonth: 27, isCurrentMonth: true, selectedDay: false },
+      { daysInMonth: 28, isCurrentMonth: true, selectedDay: false },
+      { daysInMonth: 29, isCurrentMonth: true, selectedDay: false },
+      { daysInMonth: 30, isCurrentMonth: true, selectedDay: false },
+      { daysInMonth: 1, isCurrentMonth: false, selectedDay: false },
     ],
   ];
   test('Check arr1', () => {
