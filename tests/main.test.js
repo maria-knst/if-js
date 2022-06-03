@@ -1,57 +1,51 @@
-import { getCalendarMonth } from '../main';
+import Students from '../main.js';
+import { User, Student } from '../main.js';
 
-describe('Check getCalendarMonth-function', () => {
-  const arr1 = [
-    [
-      { daysInMonth: 27, notCurrentMonth: true, selectedDay: false },
-      { daysInMonth: 28, notCurrentMonth: true, selectedDay: false },
-      { daysInMonth: 29, notCurrentMonth: true, selectedDay: false },
-      { daysInMonth: 30, notCurrentMonth: true, selectedDay: false },
-      { daysInMonth: 1, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 2, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 3, notCurrentMonth: false, selectedDay: false },
-    ],
-    [
-      { daysInMonth: 4, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 5, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 6, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 7, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 8, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 9, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 10, notCurrentMonth: false, selectedDay: false },
-    ],
-    [
-      { daysInMonth: 11, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 12, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 13, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 14, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 15, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 16, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 17, notCurrentMonth: false, selectedDay: false },
-    ],
-    [
-      { daysInMonth: 18, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 19, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 20, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 21, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 22, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 23, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 24, notCurrentMonth: false, selectedDay: false },
-    ],
-    [
-      { daysInMonth: 25, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 26, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 27, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 28, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 29, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 30, notCurrentMonth: false, selectedDay: false },
-      { daysInMonth: 1, notCurrentMonth: true, selectedDay: false },
-    ],
-  ];
-  test('Check arr1', () => {
-    expect(getCalendarMonth(30, 7, 4)).toEqual(arr1);
+describe('Check "fullName" function', () => {
+  test('First check', () => {
+    const user1 = new User({ firstName: 'Maria', lastName: 'Knst' });
+    expect(user1.fullName).toEqual('Maria Knst');
   });
-  test('Check wrong info', () => {
-    expect(getCalendarMonth(30, 5, 39)).toBe(false);
+});
+
+describe('Check "getInfo" function', () => {
+  test('Check array of students', () => {
+    const arr = [
+      new Student({
+        firstName: 'Ivan',
+        lastName: 'Ivanov',
+        admissionYear: 2020,
+        courseName: 'JavaScript',
+      }),
+      new Student({
+        firstName: 'Vasily',
+        lastName: 'Petrov',
+        admissionYear: 2021,
+        courseName: 'Java',
+      }),
+      new Student({
+        firstName: 'Aleksander',
+        lastName: 'Fedorov',
+        admissionYear: 2019,
+        courseName: 'Python',
+      }),
+      new Student({
+        firstName: 'Nikolay',
+        lastName: 'Petrov',
+        admissionYear: 2021,
+        courseName: 'Android',
+      }),
+    ];
+
+    const group = new Students(arr);
+
+    const result = [
+      'Vasily Petrov - Java, 1 course',
+      'Nikolay Petrov - Android, 1 course',
+      'Ivan Ivanov - JavaScript, 2 course',
+      'Aleksander Fedorov - Python, 3 course',
+    ];
+
+    expect(group.getInfo()).toEqual(result);
   });
 });

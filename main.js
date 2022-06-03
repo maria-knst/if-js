@@ -1,37 +1,54 @@
-//Task1
-
-
-
-//Task2
-export function getCalendarMonth(daysInMonth, daysInWeek, dayOfWeek) {
-  if (dayOfWeek >= daysInWeek) {
-    return false;
-  }
-  let count = daysInMonth - dayOfWeek + 1;
-  const matrix = new Array(Math.ceil(daysInMonth / 7));
-  for (let i = 0; i < matrix.length; i++) {
-    matrix[i] = new Array(daysInWeek);
+export class User {
+  constructor({ firstName, lastName }) {
+    this.firstName = firstName;
+    this.lastName = lastName;
   }
 
-  let start = false; // показывает начался ли месяц
-  for (let i = 0; i < Math.ceil(daysInMonth / daysInWeek); i++) {
-    for (let j = 0; j < daysInWeek; j++) {
-      if (count % daysInMonth === 0) {
-        matrix[i][j] = {'daysInMonth': daysInMonth, 'notCurrentMonth': !start, 'selectedDay': false};
-        start = false; // означет, что месяц закончился
-      } else {
-        if(count % daysInMonth === 1 && i === 0){ start = true; } // начало месяца обязательно будет на первой строчке
-        matrix[i][j] = {'daysInMonth': count % daysInMonth, 'notCurrentMonth': !start, 'selectedDay': false};
-      }
-      count++;
-    }
+  get fullName() {
+    return `${this.firstName} ${this.lastName}`;
   }
-
-  return matrix;
 }
 
-const daysInMonth = 30;
-const daysInWeek = 7;
-const dayOfWeek = 4;
-const calendarMonth = getCalendarMonth(daysInMonth, daysInWeek, dayOfWeek);
+export class Student extends User {
+  constructor({ firstName, lastName, admissionYear, courseName }) {
+    super({ firstName, lastName });
+    this.admissionYear = admissionYear;
+    this.courseName = courseName;
+  }
 
+  get course() {
+    const today = new Date();
+    const currentYear = today.getFullYear();
+    return currentYear - this.admissionYear;
+  }
+}
+
+export default class Students {
+  constructor(students) {
+    this.students = students;
+  }
+
+  getInfo() {
+    const sortedStudents = [...this.students];
+
+    for (let i = 0; i < sortedStudents.length; i++) {
+      // i - номер прохода
+      for (let j = sortedStudents.length - 1; j > i; j--) {
+        // внутренний цикл прохода
+        if (sortedStudents[j - 1].course > sortedStudents[j].course) {
+          const tmp = sortedStudents[j - 1];
+          sortedStudents[j - 1] = sortedStudents[j];
+          sortedStudents[j] = tmp;
+        }
+      }
+    }
+
+    const result = [];
+    sortedStudents.forEach((item) => {
+      const str = `${item.fullName} - ${item.courseName}, ${item.course} course`;
+      result.push(str);
+    });
+
+    return result;
+  }
+}
