@@ -31,24 +31,18 @@ export default class Students {
   getInfo() {
     const sortedStudents = [...this.students];
 
-    for (let i = 0; i < sortedStudents.length; i++) {
-      // i - номер прохода
-      for (let j = sortedStudents.length - 1; j > i; j--) {
-        // внутренний цикл прохода
-        if (sortedStudents[j - 1].course > sortedStudents[j].course) {
-          const tmp = sortedStudents[j - 1];
-          sortedStudents[j - 1] = sortedStudents[j];
-          sortedStudents[j] = tmp;
-        }
+    sortedStudents.sort(function (a, b) {
+      if (a.course > b.course) {
+        return 1;
       }
-    }
-
-    const result = [];
-    sortedStudents.forEach((item) => {
-      const str = `${item.fullName} - ${item.courseName}, ${item.course} course`;
-      result.push(str);
+      if (a.course < b.course) {
+        return -1;
+      }
+      return 0;
     });
 
-    return result;
+    return sortedStudents.map(
+      (item) => `${item.fullName} - ${item.courseName}, ${item.course} course`,
+    );
   }
 }
