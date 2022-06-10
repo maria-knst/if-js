@@ -41,44 +41,24 @@ export function getCalendarMonth(daysInMonth, daysInWeek, dayOfWeek) {
   for (let i = 0; i < Math.ceil(daysInMonth / daysInWeek); i++) {
     for (let j = 0; j < daysInWeek; j++) {
       if (count % daysInMonth === 0) {
-        if (daysInMonth === todayDay && start === true) {
-          //checked if day is today day
-          matrix[i][j] = {
-            daysInMonth: daysInMonth,
-            isCurrentMonth: start,
-            selectedDay: false,
-            currentDay: true,
-          };
-        } else {
-          matrix[i][j] = {
-            daysInMonth: daysInMonth,
-            isCurrentMonth: start,
-            selectedDay: false,
-            currentDay: false,
-          };
-        }
+        matrix[i][j] = {
+          daysInMonth: daysInMonth,
+          isCurrentMonth: start,
+          selectedDay: false,
+          currentDay: daysInMonth === todayDay && start === true,
+        };
         start = false; // month is over
       } else {
         if (count % daysInMonth === 1 && i === 0) {
           start = true;
         } // the beginning of the month on the first line
 
-        if (count % daysInMonth === todayDay && start === true) {
-          //checked if day is today day
-          matrix[i][j] = {
-            daysInMonth: count % daysInMonth,
-            isCurrentMonth: start,
-            selectedDay: false,
-            currentDay: true,
-          };
-        } else {
-          matrix[i][j] = {
-            daysInMonth: count % daysInMonth,
-            isCurrentMonth: start,
-            selectedDay: false,
-            currentDay: false,
-          };
-        }
+        matrix[i][j] = {
+          daysInMonth: count % daysInMonth,
+          isCurrentMonth: start,
+          selectedDay: false,
+          currentDay: count % daysInMonth === todayDay && start === true, //checked if day is today day
+        };
       }
       count++;
     }
@@ -87,13 +67,25 @@ export function getCalendarMonth(daysInMonth, daysInWeek, dayOfWeek) {
   return matrix;
 }
 
-const today = new Date();
-const daysInMonth = new Date(
-  today.getFullYear(),
-  today.getMonth() + 1,
-  0,
-).getDate();
-const dayOfWeek =
-  new Date(today.getFullYear(), today.getMonth(), 1).getDay() - 1;
-const daysInWeek = 7;
-const calendarMonth = getCalendarMonth(daysInMonth, daysInWeek, dayOfWeek);
+const getParameters = () => {
+  const options = {};
+  const today = new Date();
+  options.daysInMonth = new Date(
+    today.getFullYear(),
+    today.getMonth() + 1,
+    0,
+  ).getDate();
+  options.dayOfWeek =
+    new Date(today.getFullYear(), today.getMonth(), 1).getDay() - 1;
+  options.daysInWeek = 7;
+
+  return options;
+};
+
+const calendarMonth = getCalendarMonth(
+  getParameters().daysInMonth,
+  getParameters().daysInWeek,
+  getParameters().dayOfWeek,
+);
+
+console.log(calendarMonth);
