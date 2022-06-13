@@ -5,39 +5,32 @@ const homesFlexContainer = homesContainer.querySelector(
   '.places__flex-container',
 );
 
-console.log(homesFlexContainer);
-
-for (let i = 0; i < data.length; i++) {
-  const homeElement = document.createElement('div');
-  homeElement.classList.add('places__element', 'col-3');
-
-  const homeFigureEl = document.createElement('figure');
-  const homeImageEl = document.createElement('img');
-  const homeImageFigcaptoinEl = document.createElement('figcaption');
-  homeImageEl.classList.add('places__image');
-  homeImageEl.setAttribute('src', data[i].imageUrl);
-  homeImageEl.setAttribute('alt', `home-img-${i + 1}`);
-  homeImageEl.setAttribute('id', `homes-${i + 1}`);
-
-  homeImageFigcaptoinEl.classList.add('places__label');
-  homeImageFigcaptoinEl.textContent = data[i].name;
-
-  homeFigureEl.appendChild(homeImageEl);
-  homeFigureEl.appendChild(homeImageFigcaptoinEl);
-
-  const homeNameEl = document.createElement('p');
-  homeNameEl.classList.add('homes__destination');
-  homeNameEl.textContent = `${data[i].city}, ${data[i].country}`;
-
-  homeElement.appendChild(homeFigureEl);
-  homeElement.appendChild(homeNameEl);
-  if (i >= 2) {
-    homeElement.classList.add('hidden');
+data.forEach((element, index) => {
+  homesFlexContainer.innerHTML += `
+    <div class="places__element col-3">
+            <figure>
+              <img
+                src=${element.imageUrl}
+                id="homes_${index + 1}"
+                class="places__image"
+                alt="home-img-${index + 1}"
+              />
+              <figcaption class="places__label">${element.name}</figcaption>
+            </figure>
+            <p class="homes__destination">${element.city}, ${
+    element.country
+  }</p>
+          </div>
+  `;
+  if (index >= 2) {
+    const placesElement =
+      homesFlexContainer.querySelectorAll('.places__element')[index];
+    console.log(placesElement);
+    placesElement.classList.add('hidden');
   }
-  if (i >= 4) {
-    homeElement.classList.add('temporarily-hidden');
+  if (index >= 4) {
+    const placesElement =
+      homesFlexContainer.querySelectorAll('.places__element')[index];
+    placesElement.classList.add('temporarily-hidden');
   }
-  homesFlexContainer.appendChild(homeElement);
-}
-
-console.log(homesFlexContainer);
+});
