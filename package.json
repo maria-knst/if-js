@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "sass:watch": "sass --watch src/css/style.scss src/css/style.css",
     "test": "jest",
     "prepare": "husky install",
-    "lint": "prettier --write . && eslint main.js",
-    "prepublish": "npm run lint && npm test"
+    "lint": "prettier --write . && eslint src/js/main.js",
+    "prepublish": "npm run lint"
   },
   "repository": {
     "type": "git",
@@ -31,5 +32,8 @@
     "jest": "^28.1.0",
     "jest-environment-jsdom": "^28.1.0",
     "prettier": "2.6.2"
+  },
+  "dependencies": {
+    "sass": "^1.52.3"
   }
 }
