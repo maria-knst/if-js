@@ -64,46 +64,80 @@
             </div>
 
             <div class="people top__div-but">
-              <button class="inner-but">2 Adults — 0 Children — 1 Room</button>
+              <button id="amount-field" class="inner-but">
+                <span id="adult-span">2</span> Adults —
+                <span id="child-span">0</span> Children —
+                <span id="room-span">1</span> Room
+              </button>
 
               <div class="top__people-filter">
                 <div class="top__inner-filter">
                   <span>Adults</span>
                   <div class="top__filter-buttons">
-                    <button class="filter_minus filter_inner-button">-</button>
+                    <button
+                      id="adult-minus"
+                      class="filter_minus filter_inner-button"
+                    >
+                      -
+                    </button>
                     <button
                       id="adult-amount"
                       class="filter_amount filter_inner-num-button"
                     >
                       2
                     </button>
-                    <button class="filter_plus filter_inner-button">+</button>
+                    <button
+                      id="adult-plus"
+                      class="filter_plus filter_inner-button"
+                    >
+                      +
+                    </button>
                   </div>
                 </div>
                 <div class="top__inner-filter">
                   <span>Children</span>
                   <div class="top__filter-buttons">
-                    <button class="filter_minus filter_inner-button">-</button>
                     <button
-                      id="children-amount"
+                      id="child-minus"
+                      class="filter_minus filter_inner-button"
+                    >
+                      -
+                    </button>
+                    <button
+                      id="child-amount"
                       class="filter_amount filter_inner-num-button"
                     >
                       0
                     </button>
-                    <button class="filter_plus filter_inner-button">+</button>
+                    <button
+                      id="child-plus"
+                      class="filter_plus filter_inner-button"
+                    >
+                      +
+                    </button>
                   </div>
                 </div>
                 <div class="top__inner-filter">
                   <span>Rooms</span>
                   <div class="top__filter-buttons">
-                    <button class="filter_minus filter_inner-button">-</button>
                     <button
-                      id="rooms-amount"
+                      id="room-minus"
+                      class="filter_minus filter_inner-button"
+                    >
+                      -
+                    </button>
+                    <button
+                      id="room-amount"
                       class="filter_amount filter_inner-num-button"
                     >
                       1
                     </button>
-                    <button class="filter_plus filter_inner-button">+</button>
+                    <button
+                      id="room-plus"
+                      class="filter_plus filter_inner-button"
+                    >
+                      +
+                    </button>
                   </div>
                 </div>
                 <div class="top__filter-with-children">

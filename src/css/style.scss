@@ -59,6 +59,8 @@ $main_font-family: 'Roboto', sans-serif;
   color: $color_white;
 }
 
+
+
 * {
   margin: 0;
   padding: 0;
@@ -317,6 +319,10 @@ body {
         .filter_inner-num-button {
           border: none;
         }
+        .filter__button-disable{
+          border: 1px solid $color_light-grey;
+          color: $color-light-grey;
+        }
       }
       .top__filter-with-children {
         color: $color_dark-grey;
@@ -338,6 +344,9 @@ body {
           font-size: 12px;
           color: $color-light-blue;
           margin: 2% 0;
+        }
+        .temporarily-hidden {
+          display: none;
         }
       }
     }
