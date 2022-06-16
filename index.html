@@ -58,11 +58,62 @@
               value="New York"
               required
             />
-            <button class="date but" id="date">
-              Tue 15 Sept — Sat 19 Sept
-            </button>
 
-            <button class="people but">2 Adults — 0 Children — 1 Room</button>
+            <div class="date top__div-but" id="date">
+              <button class="inner-but">Tue 15 Sept — Sat 19 Sept</button>
+            </div>
+
+            <div class="people top__div-but">
+              <button class="inner-but">2 Adults — 0 Children — 1 Room</button>
+
+              <div class="top__people-filter">
+                <div class="top__inner-filter">
+                  <span>Adults</span>
+                  <div class="top__filter-buttons">
+                    <button class="filter_minus filter_inner-button">-</button>
+                    <button
+                      id="adult-amount"
+                      class="filter_amount filter_inner-num-button"
+                    >
+                      2
+                    </button>
+                    <button class="filter_plus filter_inner-button">+</button>
+                  </div>
+                </div>
+                <div class="top__inner-filter">
+                  <span>Children</span>
+                  <div class="top__filter-buttons">
+                    <button class="filter_minus filter_inner-button">-</button>
+                    <button
+                      id="children-amount"
+                      class="filter_amount filter_inner-num-button"
+                    >
+                      0
+                    </button>
+                    <button class="filter_plus filter_inner-button">+</button>
+                  </div>
+                </div>
+                <div class="top__inner-filter">
+                  <span>Rooms</span>
+                  <div class="top__filter-buttons">
+                    <button class="filter_minus filter_inner-button">-</button>
+                    <button
+                      id="rooms-amount"
+                      class="filter_amount filter_inner-num-button"
+                    >
+                      1
+                    </button>
+                    <button class="filter_plus filter_inner-button">+</button>
+                  </div>
+                </div>
+                <div class="top__filter-with-children">
+                  <p>What is the age of the child you’re travelling with?</p>
+                  <select name="top__child-years" class="top__child-years">
+                    <option value="8">8 years</option>
+                  </select>
+                </div>
+              </div>
+            </div>
             <button class="top-search-button">Search</button>
           </div>
         </form>
