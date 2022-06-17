@@ -119,6 +119,8 @@ body {
   margin: auto;
 }
 
+
+
 //_____________________TOP-SECTION___________________________
 
 .top-section {
@@ -276,6 +278,7 @@ body {
     border-radius: $top_border-radius;
   }
 
+
   .top__div-but {
     text-align: center;
     font-size: 18px;
@@ -347,6 +350,9 @@ body {
       .temporarily-hidden {
         display: none;
       }
+    }
+    .disable {
+      display: none;
     }
   }
 

@@ -54,7 +54,6 @@ const addSelectorOfAge = () => {
   }
   childAgeDiv.appendChild(selectEl);
 };
-
 const removeSelectorOfAge = () => {
   const childAgeDiv = document.getElementById('top__filter-with-children');
   const selectors = document.querySelectorAll('.top__child-years');
@@ -127,4 +126,9 @@ filterMembers.forEach((item, index) => {
       index,
     );
   });
+});
+
+document.getElementById('amount-field').addEventListener('click', (event) => {
+  event.preventDefault();
+  document.getElementById('top__people-filter').classList.toggle('disable');
 });

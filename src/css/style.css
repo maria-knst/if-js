@@ -280,6 +280,9 @@ body {
 .top-section .top__div-but .top__people-filter .temporarily-hidden {
   display: none;
 }
+.top-section .top__div-but .disable {
+  display: none;
+}
 .top-section .top__div-but:hover {
   border: 3px solid #f5bd41;
 }
