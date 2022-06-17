@@ -290,7 +290,7 @@ body {
       position: relative;
       z-index: 4;
     }
-    .inner-but:active{
+    .inner-but:active {
       background: rgba(246, 205, 21, 0.15);
     }
     .top__people-filter {
@@ -308,11 +308,11 @@ body {
       animation-direction: alternate;
 
       @keyframes slideup {
-        from{
+        from {
           top: -30%;
           opacity: 0;
         }
-        to{
+        to {
           top: 120%;
           opacity: 1;
         }

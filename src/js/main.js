@@ -36,6 +36,7 @@ data.forEach((element, index) => {
 });
 
 //TOP SECTION
+//desktop form
 const filterMembers = ['adult', 'child', 'room'];
 const madeChildrenAgeDiv = () => {
   const childAgeDiv = document.getElementById('top__filter-with-children');
@@ -44,6 +45,7 @@ const madeChildrenAgeDiv = () => {
 };
 
 const addSelectorOfAge = () => {
+
   const childAgeDiv = document.getElementById('top__filter-with-children');
 
   const selectEl = document.createElement('select');
@@ -64,12 +66,10 @@ const removeSelectorOfAge = () => {
 const toggleChildrenAge = (num) => {
   if (num < 1) {
     document
-      .querySelector('.top__filter-with-children')
-      .classList.add('temporarily-hidden');
+      .querySelector('.top__filter-with-children').classList.add('temporarily-hidden');
   } else {
     document
-      .querySelector('.top__filter-with-children')
-      .classList.remove('temporarily-hidden');
+      .querySelector('.top__filter-with-children').classList.remove('temporarily-hidden');
   }
 };
 
@@ -132,3 +132,7 @@ document.getElementById('amount-field').addEventListener('click', (event) => {
   event.preventDefault();
   document.getElementById('top__people-filter').classList.toggle('disable');
 });
+
+
+
+
