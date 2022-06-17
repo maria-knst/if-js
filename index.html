@@ -61,6 +61,30 @@
 
             <div class="date top__div-but" id="date">
               <button class="inner-but">Tue 15 Sept — Sat 19 Sept</button>
+              <div class="top__calendar">
+                <img
+                  class="cal_arrow calendar_arrow1"
+                  src="./src/images/svg/Arrow.svg"
+                  alt="arrow"
+                />
+                <div class="calendar-month">
+                  <div class="calendar-wrapper calendar_current-month">
+                    <h4 class="cal_month-name" id="cal_current-month-name"></h4>
+                    <div class="cal_grid-wrapper"></div>
+                  </div>
+                </div>
+                <div class="calendar-month">
+                  <div class="calendar-wrapper calendar_next-month">
+                    <h4 class="cal_month-name" id="cal_next-month-name"></h4>
+                    <div class="cal_grid-wrapper"></div>
+                  </div>
+                </div>
+                <img
+                  class="cal_arrow calendar_arrow2"
+                  src="./src/images/svg/Arrow.svg"
+                  alt="arrow"
+                />
+              </div>
             </div>
 
             <div class="people top__div-but">
@@ -150,9 +174,6 @@
           </div>
         </form>
 
-
-
-
         <form class="top-search-frame-adaptive">
           <div class="top-frame-element top__destination">
             <img src="./src/images/svg/Find.svg" alt="Find" />
@@ -223,13 +244,6 @@
           </div>
           <button class="top-frame-element top__search">Search</button>
         </form>
-
-
-
-
-
-
-
 
         <div class="top-apps">
           <img
@@ -659,5 +673,6 @@
 
     <script type="module" src="./src/js/main.js"></script>
     <script type="module" src="/src/js/data_hostels.js"></script>
+    <script type="module" src="/src/js/dates_work.js"></script>
   </body>
 </html>

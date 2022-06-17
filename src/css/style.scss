@@ -5,6 +5,7 @@ $color_white: #ffffff;
 $color_very-light-grey: #f3f3f4;
 $color_light-black: #333333;
 $color_dark-grey: #383838;
+$color_calendar-grey: #4d4d4d;
 $color_light-grey: #eaf0f9;
 $color_grey: #bfbfbf;
 $color_medium-grey: #8a8989;
@@ -280,6 +281,7 @@ body {
     text-align: center;
     font-size: 18px;
     position: relative;
+    border: 3px solid $color_white;
 
     .inner-but {
       width: 100%;
@@ -293,6 +295,90 @@ body {
     .inner-but:active {
       background: rgba(246, 205, 21, 0.15);
     }
+
+    .top__calendar {
+      background: $color_white;
+      display: flex;
+      justify-content: space-between;
+      position: absolute;
+      top: 120%;
+      width: 225%;
+      border-radius: $top_border-radius;
+      border: 0.3px solid $color-light-blue;
+      $calendar-width: 100%;
+
+      .calendar-month {
+        margin: 2% 4% 4% 4%;
+        width: 45%;
+        display: flex;
+        flex-direction: column;
+        align-items: baseline;
+        border-radius: $top_border-radius;
+        border: 0.3px solid $color-white;
+        color: $color_calendar-grey;
+
+        .calendar-wrapper {
+          font-family: 'Roboto', sans-serif;
+          color: $color_dark-grey;
+          width: 100%;
+
+          .cal_month-name {
+            font-weight: 500;
+            font-size: 18px;
+          }
+
+          .cal_grid-wrapper {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            .cal_day {
+              font-weight: 300;
+              font-size: 14px;
+              padding: 28%;
+              width: #{$calendar-width}/ 7;
+              height: #{$calendar-width}/ 7;
+            }
+            .cal_day:hover {
+              background: $color_grey;
+            }
+
+            .cal_today {
+              color: $color_light-blue;
+            }
+            .cal_past-day {
+              color: $color-grey;
+            }
+            .cal_not-current-month {
+              visibility: hidden;
+            }
+          }
+        }
+      }
+      .calendar-month:hover {
+        border: 0.3px solid $color-light-grey;
+      }
+
+      .cal_arrow {
+        margin-top: 2%;
+        margin-right: 2%;
+        height: 16px;
+        position: absolute;
+        opacity: 0.8;
+      }
+      .cal_arrow:active {
+        opacity: 1;
+      }
+
+      .calendar_arrow1 {
+        left: 5%;
+        transform: rotate(180deg);
+      }
+
+      .calendar_arrow2 {
+        left: 95%;
+      }
+    }
+
     .top__people-filter {
       position: absolute;
       z-index: 1;

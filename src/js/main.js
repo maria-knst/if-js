@@ -1,6 +1,7 @@
 import data from './data_hostels.js';
+import { daysOfWeek, months, calendarMonth } from "./dates_work.js";
 
-//HOMES SECTION
+//___________________________HOMES SECTION
 const homesContainer = document.querySelector('.homes__container');
 const homesFlexContainer = homesContainer.querySelector(
   '.places__flex-container',
@@ -35,8 +36,8 @@ data.forEach((element, index) => {
   }
 });
 
-//TOP SECTION
-//desktop form
+//____________________________TOP SECTION
+//desktop form, number of people and rooms
 const filterMembers = ['adult', 'child', 'room'];
 const madeChildrenAgeDiv = () => {
   const childAgeDiv = document.getElementById('top__filter-with-children');
@@ -45,7 +46,6 @@ const madeChildrenAgeDiv = () => {
 };
 
 const addSelectorOfAge = () => {
-
   const childAgeDiv = document.getElementById('top__filter-with-children');
 
   const selectEl = document.createElement('select');
@@ -66,10 +66,12 @@ const removeSelectorOfAge = () => {
 const toggleChildrenAge = (num) => {
   if (num < 1) {
     document
-      .querySelector('.top__filter-with-children').classList.add('temporarily-hidden');
+      .querySelector('.top__filter-with-children')
+      .classList.add('temporarily-hidden');
   } else {
     document
-      .querySelector('.top__filter-with-children').classList.remove('temporarily-hidden');
+      .querySelector('.top__filter-with-children')
+      .classList.remove('temporarily-hidden');
   }
 };
 
@@ -134,5 +136,37 @@ document.getElementById('amount-field').addEventListener('click', (event) => {
 });
 
 
+//desktop form, dates
+const today = new Date();
+const findToday = (index, innerIndex) => {
+  document.querySelectorAll('.cal_day-num')[index * 7 + innerIndex].classList.add('cal_today');
+  const pastDays = document.querySelectorAll('.cal_day-num');
+  for(let i = 0; i < index * 7 + innerIndex;i++){
+    pastDays[i].classList.add('cal_past-day');
+  }
+};
 
 
+document.querySelectorAll('.cal_grid-wrapper').forEach( (element) =>{
+
+  daysOfWeek.forEach( (item) =>{
+    element.innerHTML += `<div class="cal_day cal_day-of-week">${item}</div>`;
+  });
+  calendarMonth.forEach( (item, index) => {
+    item.forEach( (innerItem, innerIndex) => {
+      (innerItem.isCurrentMonth === true) ?
+        element.innerHTML += `<div class="cal_day cal_day-num">${innerItem.daysInMonth}</div>`
+      :
+        element.innerHTML += `<div class="cal_day cal_day-num cal_not-current-month">${innerItem.daysInMonth}</div>`;
+
+
+      if(innerItem.currentDay === true){
+        findToday(index, innerIndex);
+      }
+    });
+  });
+});
+
+
+document.getElementById('cal_current-month-name').innerText =`${months[today.getMonth()]} ${today.getFullYear()}`;
+document.getElementById('cal_next-month-name').innerText = `${months[today.getMonth()+1]} ${today.getFullYear()}`;
