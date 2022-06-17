@@ -119,8 +119,6 @@ body {
   margin: auto;
 }
 
-
-
 //_____________________TOP-SECTION___________________________
 
 .top-section {
@@ -278,20 +276,26 @@ body {
     border-radius: $top_border-radius;
   }
 
-
   .top__div-but {
     text-align: center;
     font-size: 18px;
     position: relative;
+
     .inner-but {
       width: 100%;
       height: 100%;
       border: none;
       border-radius: $top_border-radius;
       background: $color_white;
+      position: relative;
+      z-index: 4;
+    }
+    .inner-but:active{
+      background: rgba(246, 205, 21, 0.15);
     }
     .top__people-filter {
       position: absolute;
+      z-index: 1;
       width: 84%;
       background: $color_white;
       right: 0;
@@ -299,6 +303,20 @@ body {
       border-radius: $top_border-radius;
       padding: 5%;
       border: 0.3px solid $color-light-blue;
+      animation-duration: 1s;
+      animation-name: slideup;
+      animation-direction: alternate;
+
+      @keyframes slideup {
+        from{
+          top: -30%;
+          opacity: 0;
+        }
+        to{
+          top: 120%;
+          opacity: 1;
+        }
+      }
       .top__inner-filter {
         display: flex;
         justify-content: space-between;
