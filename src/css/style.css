@@ -1,9 +1,9 @@
-@import url('./fonts.css');
+@import url("./fonts.css");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
 }
 
@@ -75,7 +75,7 @@ body {
   background-repeat: no-repeat;
   background-size: 100% auto;
   min-height: 100vh;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   color: #ffffff;
   padding-bottom: 120px;
   order: 1;
@@ -110,7 +110,7 @@ body {
 }
 .top-section .top-frame .top-group .top-option1:after,
 .top-section .top-frame .top-group .top-option2:after {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   width: 0;
@@ -159,7 +159,7 @@ body {
   height: 50px;
   background: #ffffff;
   border: none;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 20px;
   text-align: center;
   visibility: hidden;
@@ -232,44 +232,32 @@ body {
 .top-section .top__div-but .top__people-filter .top__inner-filter {
   display: flex;
   justify-content: space-between;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   color: #383838;
   margin: 4% 0;
 }
-.top-section
-  .top__div-but
-  .top__people-filter
-  .top__inner-filter
-  .filter_inner-button,
-.top-section
-  .top__div-but
-  .top__people-filter
-  .top__inner-filter
-  .filter_inner-num-button {
+.top-section .top__div-but .top__people-filter .top__inner-filter .filter_inner-button,
+.top-section .top__div-but .top__people-filter .top__inner-filter .filter_inner-num-button {
   width: 30px;
   height: 30px;
   border: 1px solid #3077c6;
   background: #ffffff;
   font-size: 16px;
 }
-.top-section
-  .top__div-but
-  .top__people-filter
-  .top__inner-filter
-  .filter_inner-button {
+.top-section .top__div-but .top__people-filter .top__inner-filter .filter_inner-button {
   color: #3077c6;
 }
-.top-section
-  .top__div-but
-  .top__people-filter
-  .top__inner-filter
-  .filter_inner-num-button {
+.top-section .top__div-but .top__people-filter .top__inner-filter .filter_inner-num-button {
   border: none;
+}
+.top-section .top__div-but .top__people-filter .top__inner-filter .filter__button-disable {
+  border: 1px solid #eaf0f9;
+  color: #eaf0f9;
 }
 .top-section .top__div-but .top__people-filter .top__filter-with-children {
   color: #383838;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 12px;
   display: flex;
@@ -279,19 +267,18 @@ body {
   text-align: left;
   margin: 8% 0;
 }
-.top-section
-  .top__div-but
-  .top__people-filter
-  .top__filter-with-children
-  .top__child-years {
+.top-section .top__div-but .top__people-filter .top__filter-with-children .top__child-years {
   width: 45%;
   height: 30px;
   border: 1px solid #3077c6;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 12px;
   color: #3077c6;
   margin: 2% 0;
+}
+.top-section .top__div-but .top__people-filter .temporarily-hidden {
+  display: none;
 }
 .top-section .top__div-but:hover {
   border: 3px solid #f5bd41;
@@ -322,7 +309,7 @@ body {
 }
 @media screen and (max-width: 1020px) {
   .top-section .top-option1,
-  .top-section .top-option2 {
+.top-section .top-option2 {
     display: none;
   }
   .top-section .top-sing-out {
@@ -330,7 +317,7 @@ body {
   }
   .top-section .top__menu {
     display: block;
-    content: '';
+    content: "";
     width: 40px;
     height: 4px;
     position: relative;
@@ -338,7 +325,7 @@ body {
     margin-bottom: 8px;
   }
   .top-section .top__menu:before {
-    content: '';
+    content: "";
     width: 40px;
     height: 4px;
     position: absolute;
@@ -346,7 +333,7 @@ body {
     background: #ffffff;
   }
   .top-section .top__menu:after {
-    content: '';
+    content: "";
     width: 40px;
     height: 4px;
     position: absolute;
@@ -388,10 +375,10 @@ body {
     background: #f5bd41;
     width: 100%;
     padding: 8px;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
   }
   .top-section .top__destination,
-  .top-section .top__amount {
+.top-section .top__amount {
     width: 100%;
     display: flex;
     background: #ffffff;
@@ -410,7 +397,7 @@ body {
     margin-bottom: 8px;
   }
   .top-section .top__check-in,
-  .top-section .top__check-out {
+.top-section .top__check-out {
     width: 50%;
     display: flex;
     justify-content: space-around;
@@ -444,7 +431,7 @@ body {
     border-left: 1px solid #bfbfbf;
   }
   .top-section .top__amount-input,
-  .top-section .top__destination-input {
+.top-section .top__destination-input {
     border: none;
   }
   .top-section .top__search {
@@ -527,7 +514,7 @@ body {
   position: relative;
 }
 .title .title-text:after {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   width: 0;
@@ -681,7 +668,7 @@ body {
   padding: 120px 0;
   order: 3;
   background: #eaf0f9;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 .homes .places__flex-container .homes__destination {
   color: #bfbfbf;
@@ -746,7 +733,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   background: #ffffff;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 18px;
   color: #3077c6;
   border: 1px solid #3077c6;
@@ -766,7 +753,7 @@ body {
   margin-top: 105px;
   background: #f3f3f4;
   border-radius: 8px;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 24px;
 }
 .best-destinations .best-dest__button {
@@ -849,7 +836,7 @@ body {
 }
 .sign-up .user-description {
   margin: 0 24px;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 .sign-up .user-description h5 {
   font-weight: 500;
@@ -868,7 +855,7 @@ body {
   transition: border-radius 0.5s, font-size 0.5s, border 0.5s;
 }
 .sign-up .user-description .user-button:before {
-  content: 'Sign up';
+  content: "Sign up";
 }
 .sign-up .user-description .user-button:hover {
   opacity: 0.7;
@@ -883,7 +870,7 @@ body {
 .sign-up .sign-up__close:before {
   position: absolute;
   right: 12%;
-  content: '';
+  content: "";
   width: 32px;
   height: 2px;
   transform: rotate(45deg);
@@ -892,7 +879,7 @@ body {
 .sign-up .sign-up__close:after {
   position: absolute;
   right: 12%;
-  content: '';
+  content: "";
   width: 32px;
   height: 2px;
   transform: rotate(-45deg);
@@ -927,10 +914,10 @@ body {
     transition: height 0.5s;
   }
   .sign-up .sign-up__container .user-description .user-button:before {
-    content: 'Install';
+    content: "Install";
   }
   .sign-up .sign-up__close:before,
-  .sign-up .sign-up__close:after {
+.sign-up .sign-up__close:after {
     width: 100%;
   }
   .sign-up .sign-up__close {
@@ -972,7 +959,7 @@ body {
 .reviews {
   order: 6;
   padding: 120px 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 .reviews .adaptive-title-text {
   display: none;
@@ -986,159 +973,69 @@ body {
   justify-content: space-between;
   position: relative;
 }
-.reviews
-  .places__flex-container-reviews
-  .places__inner-flex-container
-  .reviews__element {
+.reviews .places__flex-container-reviews .places__inner-flex-container .reviews__element {
   display: flex;
   flex-direction: column;
   background: #eaf0f9;
 }
-.reviews
-  .places__flex-container-reviews
-  .places__inner-flex-container
-  .reviews__element
-  .reviews__image-part {
+.reviews .places__flex-container-reviews .places__inner-flex-container .reviews__element .reviews__image-part {
   position: relative;
 }
-.reviews
-  .places__flex-container-reviews
-  .places__inner-flex-container
-  .reviews__element
-  .reviews__image-part
-  .reviews__image {
+.reviews .places__flex-container-reviews .places__inner-flex-container .reviews__element .reviews__image-part .reviews__image {
   width: 100%;
 }
-.reviews
-  .places__flex-container-reviews
-  .places__inner-flex-container
-  .reviews__element
-  .reviews__image-part
-  .reviews__cost-layer {
+.reviews .places__flex-container-reviews .places__inner-flex-container .reviews__element .reviews__image-part .reviews__cost-layer {
   position: absolute;
   width: 100%;
   height: 48px;
   top: calc(100% - 52px);
 }
-.reviews
-  .places__flex-container-reviews
-  .places__inner-flex-container
-  .reviews__element
-  .reviews__image-part
-  .reviews__cost-layer
-  .rewiews__cost-span {
+.reviews .places__flex-container-reviews .places__inner-flex-container .reviews__element .reviews__image-part .reviews__cost-layer .rewiews__cost-span {
   margin: 15px 24px;
   font-weight: 400;
 }
-.reviews
-  .places__flex-container-reviews
-  .places__inner-flex-container
-  .reviews__element
-  .reviews__image-part
-  .reviews__cost-layer
-  .rewiews__cost-span,
-.reviews
-  .places__flex-container-reviews
-  .places__inner-flex-container
-  .reviews__element
-  .reviews__image-part
-  .reviews__cost-layer
-  .reviews__inner-span {
+.reviews .places__flex-container-reviews .places__inner-flex-container .reviews__element .reviews__image-part .reviews__cost-layer .rewiews__cost-span,
+.reviews .places__flex-container-reviews .places__inner-flex-container .reviews__element .reviews__image-part .reviews__cost-layer .reviews__inner-span {
   font-size: 18px;
   color: #ffffff;
   position: relative;
   z-index: 4;
 }
-.reviews
-  .places__flex-container-reviews
-  .places__inner-flex-container
-  .reviews__element
-  .reviews__image-part
-  .reviews__cost-layer
-  .reviews__inner-span {
+.reviews .places__flex-container-reviews .places__inner-flex-container .reviews__element .reviews__image-part .reviews__cost-layer .reviews__inner-span {
   font-weight: 500;
 }
-.reviews
-  .places__flex-container-reviews
-  .places__inner-flex-container
-  .reviews__element
-  .reviews__info-part {
+.reviews .places__flex-container-reviews .places__inner-flex-container .reviews__element .reviews__info-part {
   background: #eaf0f9;
   margin: 0;
   padding: 24px;
 }
-.reviews
-  .places__flex-container-reviews
-  .places__inner-flex-container
-  .reviews__element
-  .reviews__info-part
-  .reviews__destination {
+.reviews .places__flex-container-reviews .places__inner-flex-container .reviews__element .reviews__info-part .reviews__destination {
   display: flex;
   justify-content: space-between;
   margin-bottom: 30px;
 }
-.reviews
-  .places__flex-container-reviews
-  .places__inner-flex-container
-  .reviews__element
-  .reviews__info-part
-  .reviews__destination
-  .reviews__hostel {
+.reviews .places__flex-container-reviews .places__inner-flex-container .reviews__element .reviews__info-part .reviews__destination .reviews__hostel {
   color: #3077c6;
 }
-.reviews
-  .places__flex-container-reviews
-  .places__inner-flex-container
-  .reviews__element
-  .reviews__info-part
-  .reviews__destination
-  .reviews__hostel
-  .reviews__hostel-name {
+.reviews .places__flex-container-reviews .places__inner-flex-container .reviews__element .reviews__info-part .reviews__destination .reviews__hostel .reviews__hostel-name {
   font-weight: 500;
   font-size: 18px;
   margin-bottom: 14px;
 }
-.reviews
-  .places__flex-container-reviews
-  .places__inner-flex-container
-  .reviews__element
-  .reviews__info-part
-  .reviews__destination
-  .reviews__hostel
-  .reviews__hostel-location {
+.reviews .places__flex-container-reviews .places__inner-flex-container .reviews__element .reviews__info-part .reviews__destination .reviews__hostel .reviews__hostel-location {
   font-weight: 400;
   font-size: 18px;
 }
-.reviews
-  .places__flex-container-reviews
-  .places__inner-flex-container
-  .reviews__element
-  .reviews__info-part
-  .reviews__destination
-  .reviews__score {
+.reviews .places__flex-container-reviews .places__inner-flex-container .reviews__element .reviews__info-part .reviews__destination .reviews__score {
   display: flex;
   flex-direction: column;
   align-items: end;
 }
-.reviews
-  .places__flex-container-reviews
-  .places__inner-flex-container
-  .reviews__element
-  .reviews__info-part
-  .reviews__destination
-  .reviews__score
-  .reviews__score-p {
+.reviews .places__flex-container-reviews .places__inner-flex-container .reviews__element .reviews__info-part .reviews__destination .reviews__score .reviews__score-p {
   font-size: 14px;
   color: #bfbfbf;
 }
-.reviews
-  .places__flex-container-reviews
-  .places__inner-flex-container
-  .reviews__element
-  .reviews__info-part
-  .reviews__destination
-  .reviews__score
-  .reviews__score-num {
+.reviews .places__flex-container-reviews .places__inner-flex-container .reviews__element .reviews__info-part .reviews__destination .reviews__score .reviews__score-num {
   width: 48px;
   height: 32px;
   color: #ffffff;
@@ -1149,77 +1046,32 @@ body {
   margin-bottom: 12px;
   padding: 4px 0;
 }
-.reviews
-  .places__flex-container-reviews
-  .places__inner-flex-container
-  .reviews__element
-  .reviews__info-part
-  .reviews__user {
+.reviews .places__flex-container-reviews .places__inner-flex-container .reviews__element .reviews__info-part .reviews__user {
   margin: 24px 0;
 }
-.reviews
-  .places__flex-container-reviews
-  .places__inner-flex-container
-  .reviews__element
-  .reviews__info-part
-  .reviews__user
-  .reviews-account {
+.reviews .places__flex-container-reviews .places__inner-flex-container .reviews__element .reviews__info-part .reviews__user .reviews-account {
   width: 54px;
   height: 54px;
   fill: #bfbfbf;
 }
-.reviews
-  .places__flex-container-reviews
-  .places__inner-flex-container
-  .reviews__element
-  .reviews__info-part
-  .reviews__user
-  .reviews__user-info {
+.reviews .places__flex-container-reviews .places__inner-flex-container .reviews__element .reviews__info-part .reviews__user .reviews__user-info {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   padding: 0 20px;
 }
-.reviews
-  .places__flex-container-reviews
-  .places__inner-flex-container
-  .reviews__element
-  .reviews__info-part
-  .reviews__user
-  .reviews__user-info
-  .user-name {
+.reviews .places__flex-container-reviews .places__inner-flex-container .reviews__element .reviews__info-part .reviews__user .reviews__user-info .user-name {
   font-size: 18px;
 }
-.reviews
-  .places__flex-container-reviews
-  .places__inner-flex-container
-  .reviews__element
-  .reviews__info-part
-  .reviews__user
-  .reviews__user-info
-  .user-location
-  .reviews__flag {
+.reviews .places__flex-container-reviews .places__inner-flex-container .reviews__element .reviews__info-part .reviews__user .reviews__user-info .user-location .reviews__flag {
   width: 16px;
 }
-.reviews
-  .places__flex-container-reviews
-  .places__inner-flex-container
-  .reviews__element
-  .reviews__info-part
-  .reviews__user
-  .reviews__user-info
-  .user-location
-  p {
+.reviews .places__flex-container-reviews .places__inner-flex-container .reviews__element .reviews__info-part .reviews__user .reviews__user-info .user-location p {
   font-size: 18px;
   color: #8a8989;
   padding-left: 4px;
 }
-.reviews
-  .places__flex-container-reviews
-  .places__inner-flex-container
-  .reviews__element
-  .reviews__info-part
-  .reviews__review {
+.reviews .places__flex-container-reviews .places__inner-flex-container .reviews__element .reviews__info-part .reviews__review {
   font-size: 18px;
 }
 @media screen and (max-width: 840px) {
@@ -1227,16 +1079,10 @@ body {
     flex-wrap: wrap;
     justify-content: space-around;
   }
-  .reviews
-    .places__flex-container-reviews
-    .places__inner-flex-container
-    .places__element {
+  .reviews .places__flex-container-reviews .places__inner-flex-container .places__element {
     width: 48%;
   }
-  .reviews
-    .places__flex-container-reviews
-    .places__inner-flex-container
-    .hidden {
+  .reviews .places__flex-container-reviews .places__inner-flex-container .hidden {
     display: none;
   }
 }
@@ -1246,19 +1092,13 @@ body {
   }
 }
 @media screen and (max-width: 520px) {
-  .reviews
-    .places__flex-container-reviews
-    .places__inner-flex-container
-    .places__arrow {
+  .reviews .places__flex-container-reviews .places__inner-flex-container .places__arrow {
     width: 28px;
     height: 28px;
     top: 30%;
     left: calc(100% - 20px);
   }
-  .reviews
-    .places__flex-container-reviews
-    .places__inner-flex-container
-    .hidden_1 {
+  .reviews .places__flex-container-reviews .places__inner-flex-container .hidden_1 {
     display: none;
   }
 }
@@ -1266,17 +1106,11 @@ body {
   .reviews .places__flex-container-reviews .places__inner-flex-container {
     font-size: 12px;
   }
-  .reviews
-    .places__flex-container-reviews
-    .places__inner-flex-container
-    .places__label {
+  .reviews .places__flex-container-reviews .places__inner-flex-container .places__label {
     padding: 4px 0;
     font-size: 12px;
   }
-  .reviews
-    .places__flex-container-reviews
-    .places__inner-flex-container
-    .places__arrow {
+  .reviews .places__flex-container-reviews .places__inner-flex-container .places__arrow {
     top: 40%;
   }
 }
@@ -1358,11 +1192,11 @@ body {
     font-size: 12px;
   }
   .reviews .reviews__hostel-name,
-  .reviews .reviews__hostel-location,
-  .reviews .reviews__score-num,
-  .reviews .user-name,
-  .reviews .user-location p,
-  .reviews .reviews__review p {
+.reviews .reviews__hostel-location,
+.reviews .reviews__score-num,
+.reviews .user-name,
+.reviews .user-location p,
+.reviews .reviews__review p {
     font-size: 15px;
   }
   .reviews .dots {

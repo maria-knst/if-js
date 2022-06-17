@@ -37,6 +37,42 @@ data.forEach((element, index) => {
 
 //TOP SECTION
 const filterMembers = ['adult', 'child', 'room'];
+const madeChildrenAgeDiv = () => {
+  const childAgeDiv = document.getElementById('top__filter-with-children');
+  childAgeDiv.innerHTML +=
+    '<p>What is the age of the child you’re travelling with?</p>';
+};
+
+const addSelectorOfAge = () => {
+  const childAgeDiv = document.getElementById('top__filter-with-children');
+
+  const selectEl = document.createElement('select');
+  selectEl.classList.add('top__child-years');
+  selectEl.setAttribute('id', 'child');
+  for (let i = 0; i < 18; i++) {
+    selectEl.innerHTML += `<option value="${i}">${i} years</option>`;
+  }
+  childAgeDiv.appendChild(selectEl);
+};
+
+const removeSelectorOfAge = () => {
+  const childAgeDiv = document.getElementById('top__filter-with-children');
+  const selectors = document.querySelectorAll('.top__child-years');
+  const lastSelect = selectors[selectors.length - 1];
+  childAgeDiv.removeChild(lastSelect);
+};
+
+const toggleChildrenAge = (num) => {
+  if (num < 1) {
+    document
+      .querySelector('.top__filter-with-children')
+      .classList.add('temporarily-hidden');
+  } else {
+    document
+      .querySelector('.top__filter-with-children')
+      .classList.remove('temporarily-hidden');
+  }
+};
 
 const decrement = (event, element1, element2, index) => {
   event.preventDefault();
@@ -48,7 +84,10 @@ const decrement = (event, element1, element2, index) => {
     num--;
     element1.innerText = num;
     element2.innerText = num;
-    return true;
+    removeSelectorOfAge();
+  }
+  if (index === 1) {
+    toggleChildrenAge(num);
   }
 };
 const increment = (event, element1, element2, index) => {
@@ -61,9 +100,14 @@ const increment = (event, element1, element2, index) => {
     num++;
     element1.innerText = num;
     element2.innerText = num;
+    addSelectorOfAge();
+  }
+  if (index === 1) {
+    toggleChildrenAge(num);
   }
 };
 
+madeChildrenAgeDiv();
 filterMembers.forEach((item, index) => {
   document
     .getElementById(`${item}-minus`)

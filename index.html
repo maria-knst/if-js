@@ -70,7 +70,7 @@
                 <span id="room-span">1</span> Room
               </button>
 
-              <div class="top__people-filter">
+              <div class="top__people-filter" id="top__people-filter">
                 <div class="top__inner-filter">
                   <span>Adults</span>
                   <div class="top__filter-buttons">
@@ -140,12 +140,10 @@
                     </button>
                   </div>
                 </div>
-                <div class="top__filter-with-children">
-                  <p>What is the age of the child you’re travelling with?</p>
-                  <select name="top__child-years" class="top__child-years">
-                    <option value="8">8 years</option>
-                  </select>
-                </div>
+                <div
+                  class="top__filter-with-children temporarily-hidden"
+                  id="top__filter-with-children"
+                ></div>
               </div>
             </div>
             <button class="top-search-button">Search</button>
