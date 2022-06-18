@@ -243,7 +243,7 @@ body {
   align-items: baseline;
   border-radius: 8px;
   border: 0.3px solid #ffffff;
-  color: #4D4D4D;
+  color: #4d4d4d;
 }
 .top-section .top__div-but .top__calendar .calendar-month .calendar-wrapper {
   font-family: "Roboto", sans-serif;
@@ -266,7 +266,7 @@ body {
   width: 100%/7;
   height: 100%/7;
 }
-.top-section .top__div-but .top__calendar .calendar-month .calendar-wrapper .cal_grid-wrapper .cal_day:hover {
+.top-section .top__div-but .top__calendar .calendar-month .calendar-wrapper .cal_grid-wrapper .cal_day-num:hover {
   background: #bfbfbf;
 }
 .top-section .top__div-but .top__calendar .calendar-month .calendar-wrapper .cal_grid-wrapper .cal_today {
@@ -274,6 +274,13 @@ body {
 }
 .top-section .top__div-but .top__calendar .calendar-month .calendar-wrapper .cal_grid-wrapper .cal_past-day {
   color: #bfbfbf;
+}
+.top-section .top__div-but .top__calendar .calendar-month .calendar-wrapper .cal_grid-wrapper .cal_clicked-day {
+  background: #3077c6;
+  color: #ffffff;
+}
+.top-section .top__div-but .top__calendar .calendar-month .calendar-wrapper .cal_grid-wrapper .cal_choosing-day {
+  background: #eaf0f9;
 }
 .top-section .top__div-but .top__calendar .calendar-month .calendar-wrapper .cal_grid-wrapper .cal_not-current-month {
   visibility: hidden;
@@ -283,7 +290,6 @@ body {
 }
 .top-section .top__div-but .top__calendar .cal_arrow {
   margin-top: 2%;
-  margin-right: 2%;
   height: 16px;
   position: absolute;
   opacity: 0.8;
@@ -292,10 +298,11 @@ body {
   opacity: 1;
 }
 .top-section .top__div-but .top__calendar .calendar_arrow1 {
-  left: 5%;
+  left: 4%;
   transform: rotate(180deg);
 }
 .top-section .top__div-but .top__calendar .calendar_arrow2 {
+  margin-right: 2%;
   left: 95%;
 }
 .top-section .top__div-but .top__people-filter {

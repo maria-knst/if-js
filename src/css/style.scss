@@ -338,7 +338,7 @@ body {
               width: #{$calendar-width}/ 7;
               height: #{$calendar-width}/ 7;
             }
-            .cal_day:hover {
+            .cal_day-num:hover {
               background: $color_grey;
             }
 
@@ -347,6 +347,13 @@ body {
             }
             .cal_past-day {
               color: $color-grey;
+            }
+            .cal_clicked-day{
+              background: $color_light-blue;
+              color: $color_white;
+            }
+            .cal_choosing-day{
+              background: $color_light-grey;
             }
             .cal_not-current-month {
               visibility: hidden;
@@ -360,7 +367,6 @@ body {
 
       .cal_arrow {
         margin-top: 2%;
-        margin-right: 2%;
         height: 16px;
         position: absolute;
         opacity: 0.8;
@@ -370,11 +376,12 @@ body {
       }
 
       .calendar_arrow1 {
-        left: 5%;
+        left: 4%;
         transform: rotate(180deg);
       }
 
       .calendar_arrow2 {
+        margin-right: 2%;
         left: 95%;
       }
     }
