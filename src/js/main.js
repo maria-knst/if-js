@@ -149,15 +149,15 @@ const findToday = (index, innerIndex) => {
 };
 
 //Created calendar days
-document.querySelectorAll('.cal_grid-wrapper').forEach((element) => {
+document.querySelectorAll('.cal_grid-wrapper-d').forEach((element) => {
   daysOfWeek.forEach((item) => {
     element.innerHTML += `<div class="cal_day cal_day-of-week">${item}</div>`;
   });
   calendarMonth.forEach((item, index) => {
     item.forEach((innerItem, innerIndex) => {
       innerItem.isCurrentMonth === true
-        ? (element.innerHTML += `<div class="cal_day cal_day-num">${innerItem.daysInMonth}</div>`)
-        : (element.innerHTML += `<div class="cal_day cal_day-num cal_not-current-month">${innerItem.daysInMonth}</div>`);
+        ? (element.innerHTML += `<div class="cal_day cal_day-num cal_day-num-d">${innerItem.daysInMonth}</div>`)
+        : (element.innerHTML += `<div class="cal_day cal_day-num cal_day-num-d cal_not-current-month">${innerItem.daysInMonth}</div>`);
 
       if (innerItem.currentDay === true) {
         findToday(index, innerIndex);
@@ -233,7 +233,6 @@ const AddStartDayInSpan = (startDate) => {
     document.getElementById('start-date').innerText = date + ' ' + month_year;
   }
 };
-
 const AddEndDayInSpan = (endDate) => {
   if (endDate === false) {
     document.getElementById('end-date').innerText = 'DD.MM.YY';
@@ -243,7 +242,6 @@ const AddEndDayInSpan = (endDate) => {
     document.getElementById('end-date').innerText = date + ' ' + month_year;
   }
 };
-
 const AddDaysInSpan = (startDate, endDate) => {
   if (startDate.index_ > endDate.index_) {
     const tmp = startDate;
@@ -258,7 +256,7 @@ const AddDaysInSpan = (startDate, endDate) => {
 };
 
 //To choose time period of travel
-document.querySelectorAll('.cal_day-num').forEach((element, index) => {
+document.querySelectorAll('.cal_day-num-d').forEach((element, index) => {
   element.addEventListener('click', (event) => {
     event.preventDefault();
     if (!event.target.classList.contains('cal_past-day')) {
@@ -311,6 +309,102 @@ document.querySelectorAll('.cal_day-num').forEach((element, index) => {
       }
       AddDaysInSpan(startDate, endDate);
     }
-    console.log('start: ', startDate, ' end: ', endDate);
+  });
+});
+
+//mobile form, dates
+document.getElementById('cal_current-month-name-adaptive_1').innerText = `${
+  months[today.getMonth()]
+} ${today.getFullYear()}`;
+document.getElementById('cal_next-month-name-adaptive_2').innerText = `${
+  months[today.getMonth() + 1]
+} ${today.getFullYear()}`;
+
+const findToday_a = (index, innerIndex) => {
+  const s = '.cal_day-num-a';
+  const resIndex = index * 7 + innerIndex;
+  document.querySelectorAll(s)[resIndex].classList.add('cal_today');
+  const pastDays = document.querySelectorAll('.cal_day-num-a');
+  for (let i = 0; i < index * 7 + innerIndex; i++) {
+    pastDays[i].classList.add('cal_past-day');
+  }
+};
+
+let startDate_a = false;
+
+const AddDayInSpan_a = (date_, selector) => {
+  const date = date_.innerText;
+  const month_year = date_.parentElement.previousElementSibling.innerText;
+  const str = selector === 1 ? 'check-in' : 'check-out';
+  document.getElementById(str).innerText = date + ' ' + month_year;
+  document
+    .getElementById(`top__calendar-adaptive_${selector}`)
+    .classList.toggle('disable');
+};
+
+//Click on start date
+document.getElementById('check-in').addEventListener('click', (event) => {
+  event.preventDefault();
+  event.target.parentElement.classList.toggle('active-check');
+  document
+    .getElementById('top__calendar-adaptive_1')
+    .classList.toggle('disable');
+});
+
+//Click on end date
+document.getElementById('check-out').addEventListener('click', (event) => {
+  event.preventDefault();
+  event.target.parentElement.classList.toggle('active-check');
+  document
+    .getElementById('top__calendar-adaptive_2')
+    .classList.toggle('disable');
+});
+
+//Created calendar days
+const createCalendarDays = (selector) => {
+  document
+    .querySelectorAll(`.cal_grid-wrapper-a${selector}`)
+    .forEach((element) => {
+      daysOfWeek.forEach((item) => {
+        element.innerHTML += `<div class="cal_day cal_day-of-week">${item}</div>`;
+      });
+      calendarMonth.forEach((item, index) => {
+        item.forEach((innerItem, innerIndex) => {
+          innerItem.isCurrentMonth === true
+            ? (element.innerHTML += `<div class="cal_day cal_day-num cal_day-num-a">${innerItem.daysInMonth}</div>`)
+            : (element.innerHTML += `<div class="cal_day cal_day-num cal_day-num-a cal_not-current-month">${innerItem.daysInMonth}</div>`);
+
+          if (innerItem.currentDay === true) {
+            findToday_a(index, innerIndex);
+          }
+        });
+      });
+    });
+};
+
+createCalendarDays(1);
+createCalendarDays(2);
+
+document.querySelectorAll('.cal_day-num-a').forEach((element) => {
+  element.addEventListener('click', (event) => {
+    event.preventDefault();
+    if (!event.target.classList.contains('cal_past-day')) {
+      const selector = event.target.parentElement.classList.contains(
+        'cal_grid-wrapper-a1',
+      )
+        ? 1
+        : 2;
+      if (startDate_a === false) {
+        //If start date is not choosing
+        startDate_a = event.target;
+        event.target.classList.toggle('cal_clicked-day');
+        AddDayInSpan_a(startDate_a, selector);
+      } else {
+        startDate_a.classList.toggle('cal_clicked-day');
+        startDate_a = event.target;
+        event.target.classList.toggle('cal_clicked-day');
+        AddDayInSpan_a(startDate_a, selector);
+      }
+    }
   });
 });

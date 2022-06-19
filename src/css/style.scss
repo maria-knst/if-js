@@ -121,6 +121,85 @@ body {
 }
 
 //_____________________TOP-SECTION___________________________
+$calendar-width: 100%;
+
+@mixin top_calendar{
+  background: $color_white;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  z-index: 2;
+  border-radius: $top_border-radius;
+  border: 0.3px solid $color-light-blue;
+  animation-duration: 1s;
+  animation-name: slideup;
+  animation-direction: alternate;
+  $calendar-width: 100%;
+
+  @keyframes slideup {
+    from {
+      top: -30%;
+      opacity: 0;
+    }
+    to {
+      top: 120%;
+      opacity: 1;
+    }
+  }
+}
+
+@mixin top_calendar-month{
+  margin: 2% 4% 4% 4%;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  border-radius: $top_border-radius;
+  border: 0.3px solid $color-white;
+  color: $color_calendar-grey;
+}
+
+@mixin top_calendar-wrapper{
+  font-family: 'Roboto', sans-serif;
+  color: $color_dark-grey;
+  width: 100%;
+}
+
+@mixin top_calendar-grid-wrapper{
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  .cal_day {
+    font-weight: 300;
+    font-size: 14px;
+    padding: 28%;
+    width: #{$calendar-width}/ 7;
+    height: #{$calendar-width}/ 7;
+  }
+  .cal_day-num:hover {
+    background: $color_grey;
+  }
+
+  .cal_today {
+    color: $color_light-blue;
+  }
+  .cal_past-day {
+    color: $color-grey;
+  }
+  .cal_clicked-day {
+    background: $color_light-blue;
+    color: $color_white;
+  }
+  .cal_choosing-day {
+    background: $color_light-grey;
+  }
+  .cal_not-current-month {
+    visibility: hidden;
+  }
+}
+
+@mixin active_form-field{
+  background: rgba(246, 205, 21, 0.15);
+}
 
 .top-section {
   background-image: url(../images/Top-section-castelmezzano.jpg);
@@ -293,49 +372,20 @@ body {
       z-index: 4;
     }
     .inner-but:active {
-      background: rgba(246, 205, 21, 0.15);
+      @include active_form-field;
     }
 
     .top__calendar {
-      background: $color_white;
-      display: flex;
-      justify-content: space-between;
-      position: absolute;
-      z-index: 2;
+      @include top_calendar;
       top: 120%;
       width: 225%;
-      border-radius: $top_border-radius;
-      border: 0.3px solid $color-light-blue;
-      $calendar-width: 100%;
-      animation-duration: 1s;
-      animation-name: slideup;
-      animation-direction: alternate;
-
-      @keyframes slideup {
-        from {
-          top: -30%;
-          opacity: 0;
-        }
-        to {
-          top: 120%;
-          opacity: 1;
-        }
-      }
 
       .calendar-month {
-        margin: 2% 4% 4% 4%;
+        @include top_calendar-month;
         width: 45%;
-        display: flex;
-        flex-direction: column;
-        align-items: baseline;
-        border-radius: $top_border-radius;
-        border: 0.3px solid $color-white;
-        color: $color_calendar-grey;
 
         .calendar-wrapper {
-          font-family: 'Roboto', sans-serif;
-          color: $color_dark-grey;
-          width: 100%;
+          @include top_calendar-wrapper;
 
           .cal_month-name {
             font-weight: 500;
@@ -343,36 +393,7 @@ body {
           }
 
           .cal_grid-wrapper {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            grid-template-rows: repeat(5, 1fr);
-            .cal_day {
-              font-weight: 300;
-              font-size: 14px;
-              padding: 28%;
-              width: #{$calendar-width}/ 7;
-              height: #{$calendar-width}/ 7;
-            }
-            .cal_day-num:hover {
-              background: $color_grey;
-            }
-
-            .cal_today {
-              color: $color_light-blue;
-            }
-            .cal_past-day {
-              color: $color-grey;
-            }
-            .cal_clicked-day {
-              background: $color_light-blue;
-              color: $color_white;
-            }
-            .cal_choosing-day {
-              background: $color_light-grey;
-            }
-            .cal_not-current-month {
-              visibility: hidden;
-            }
+            @include top_calendar-grid-wrapper;
           }
         }
       }
@@ -604,6 +625,33 @@ body {
       display: flex;
       gap: 8px;
       margin-bottom: 8px;
+      position: relative;
+      .top__calendar-adaptive{
+        position: absolute;
+        top:110%;
+        width: 100%;
+        background: $color_white;
+        color: $color_dark-grey;
+        @include top_calendar;
+        border: 1px solid $color_tawny;
+        .calendar-month{
+          @include top_calendar-month;
+          width: 100%;
+          .calendar-wrapper{
+            @include top_calendar-wrapper;
+          }
+          .cal_grid-wrapper{
+            @include top_calendar-grid-wrapper;
+            .cal_day {
+              padding: 8%;
+            }
+          }
+        }
+      }
+      .disable {
+        display: none;
+      }
+    //  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     }
     .top__check-in,
     .top__check-out {
@@ -615,6 +663,11 @@ body {
       border-radius: 4px;
       padding: 4px;
     }
+
+    .active-check{
+      border: 1px solid $color_light-blue;
+    }
+
     .top__date-button {
       border: none;
       background: #ffffff;
