@@ -301,11 +301,26 @@ body {
       display: flex;
       justify-content: space-between;
       position: absolute;
+      z-index: 2;
       top: 120%;
       width: 225%;
       border-radius: $top_border-radius;
       border: 0.3px solid $color-light-blue;
       $calendar-width: 100%;
+      animation-duration: 1s;
+      animation-name: slideup;
+      animation-direction: alternate;
+
+      @keyframes slideup {
+        from {
+          top: -30%;
+          opacity: 0;
+        }
+        to {
+          top: 120%;
+          opacity: 1;
+        }
+      }
 
       .calendar-month {
         margin: 2% 4% 4% 4%;
@@ -348,11 +363,11 @@ body {
             .cal_past-day {
               color: $color-grey;
             }
-            .cal_clicked-day{
+            .cal_clicked-day {
               background: $color_light-blue;
               color: $color_white;
             }
-            .cal_choosing-day{
+            .cal_choosing-day {
               background: $color_light-grey;
             }
             .cal_not-current-month {
@@ -379,7 +394,6 @@ body {
         left: 4%;
         transform: rotate(180deg);
       }
-
       .calendar_arrow2 {
         margin-right: 2%;
         left: 95%;

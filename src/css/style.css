@@ -230,10 +230,24 @@ body {
   display: flex;
   justify-content: space-between;
   position: absolute;
+  z-index: 2;
   top: 120%;
   width: 225%;
   border-radius: 8px;
   border: 0.3px solid #3077c6;
+  animation-duration: 1s;
+  animation-name: slideup;
+  animation-direction: alternate;
+}
+@keyframes slideup {
+  from {
+    top: -30%;
+    opacity: 0;
+  }
+  to {
+    top: 120%;
+    opacity: 1;
+  }
 }
 .top-section .top__div-but .top__calendar .calendar-month {
   margin: 2% 4% 4% 4%;
