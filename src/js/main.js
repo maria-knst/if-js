@@ -1,7 +1,8 @@
 import data from './data_hostels.js';
 import { daysOfWeek, months, calendarMonth } from './dates_work.js';
 
-//___________________________HOMES SECTION
+
+
 const homesContainer = document.querySelector('.homes__container');
 const homesFlexContainer = homesContainer.querySelector(
   '.places__flex-container',
@@ -36,8 +37,8 @@ data.forEach((element, index) => {
   }
 });
 
-//____________________________TOP SECTION
-//desktop form, number of people and rooms
+
+
 const filterMembers = ['adult', 'child', 'room'];
 const madeChildrenAgeDiv = () => {
   const childAgeDiv = document.getElementById('top__filter-with-children');
@@ -45,9 +46,9 @@ const madeChildrenAgeDiv = () => {
     '<p>What is the age of the child you’re travelling with?</p>';
 };
 
-const addSelectorOfAge = () => {
-  const childAgeDiv = document.getElementById('top__filter-with-children');
+const childAgeDiv = document.getElementById('top__filter-with-children');
 
+const addSelectorOfAge = () => {
   const selectEl = document.createElement('select');
   selectEl.classList.add('top__child-years');
   selectEl.setAttribute('id', 'child');
@@ -57,22 +58,14 @@ const addSelectorOfAge = () => {
   childAgeDiv.appendChild(selectEl);
 };
 const removeSelectorOfAge = () => {
-  const childAgeDiv = document.getElementById('top__filter-with-children');
   const selectors = document.querySelectorAll('.top__child-years');
   const lastSelect = selectors[selectors.length - 1];
   childAgeDiv.removeChild(lastSelect);
 };
 
 const toggleChildrenAge = (num) => {
-  if (num < 1) {
-    document
-      .querySelector('.top__filter-with-children')
-      .classList.add('temporarily-hidden');
-  } else {
-    document
-      .querySelector('.top__filter-with-children')
-      .classList.remove('temporarily-hidden');
-  }
+  const element = document.querySelector('.top__filter-with-children');
+  (num < 1) ? element.classList.add('temporarily-hidden') : element.classList.remove('temporarily-hidden');
 };
 
 const decrement = (event, element1, element2, index) => {
@@ -85,9 +78,9 @@ const decrement = (event, element1, element2, index) => {
     num--;
     element1.innerText = num;
     element2.innerText = num;
-    removeSelectorOfAge();
   }
   if (index === 1) {
+    removeSelectorOfAge();
     toggleChildrenAge(num);
   }
 };
@@ -101,47 +94,53 @@ const increment = (event, element1, element2, index) => {
     num++;
     element1.innerText = num;
     element2.innerText = num;
-    addSelectorOfAge();
   }
   if (index === 1) {
+    addSelectorOfAge();
     toggleChildrenAge(num);
   }
 };
 
-madeChildrenAgeDiv();
-filterMembers.forEach((item, index) => {
-  document
-    .getElementById(`${item}-minus`)
-    .addEventListener('click', (event) => {
-      decrement(
+const addListenersToCountButtons = () => {
+  filterMembers.forEach((item, index) => {
+    document
+      .getElementById(`${item}-minus`)
+      .addEventListener('click', (event) => {
+        decrement(
+          event,
+          document.getElementById(`${item}-amount`),
+          document.getElementById(`${item}-span`),
+          index,
+        );
+      });
+    document.getElementById(`${item}-plus`).addEventListener('click', (event) => {
+      increment(
         event,
         document.getElementById(`${item}-amount`),
         document.getElementById(`${item}-span`),
         index,
       );
     });
-  document.getElementById(`${item}-plus`).addEventListener('click', (event) => {
-    increment(
-      event,
-      document.getElementById(`${item}-amount`),
-      document.getElementById(`${item}-span`),
-      index,
-    );
   });
-});
+};
+
+madeChildrenAgeDiv();
+addListenersToCountButtons();
 
 document.getElementById('amount-field').addEventListener('click', (event) => {
   event.preventDefault();
   document.getElementById('top__people-filter').classList.toggle('disable');
 });
 
-//desktop form, dates
+
+
+
 const today = new Date();
 
 const findToday = (index, innerIndex) => {
-  const s = '.cal_day-num';
+  const dayNumber = '.cal_day-num';
   const resIndex = index * 7 + innerIndex;
-  document.querySelectorAll(s)[resIndex].classList.add('cal_today');
+  document.querySelectorAll(dayNumber)[resIndex].classList.add('cal_today');
   const pastDays = document.querySelectorAll('.cal_day-num');
   for (let i = 0; i < index * 7 + innerIndex; i++) {
     pastDays[i].classList.add('cal_past-day');
@@ -203,7 +202,7 @@ const madeGreyCells = (startDate, endDate, selector) => {
 };
 
 const madePeriodOfTraveling = (startDate, endDate) => {
-  if (startDate === false || endDate === false) {
+  if (!startDate || !endDate) {
     return;
   }
   //check if start date later than end date
@@ -215,17 +214,15 @@ const madePeriodOfTraveling = (startDate, endDate) => {
   madeGreyCells(startDate, endDate, 'add');
 };
 
-const removeFromStart = (startDate, endDate) => {
+const removeFrom = (selector, startDate, endDate) => {
   madeGreyCells(startDate, endDate, 'remove');
-  startDate.classList.remove('cal_clicked-day');
-};
-const removeFromEnd = (startDate, endDate) => {
-  madeGreyCells(startDate, endDate, 'remove');
-  endDate.classList.remove('cal_clicked-day');
+  (selector === 'start') ? startDate.classList.remove('cal_clicked-day') :
+    endDate.classList.remove('cal_clicked-day');
 };
 
+
 const AddStartDayInSpan = (startDate) => {
-  if (startDate === false) {
+  if (!startDate) {
     document.getElementById('start-date').innerText = 'DD.MM.YY';
   } else {
     const date = startDate.innerText;
@@ -234,7 +231,7 @@ const AddStartDayInSpan = (startDate) => {
   }
 };
 const AddEndDayInSpan = (endDate) => {
-  if (endDate === false) {
+  if (!endDate) {
     document.getElementById('end-date').innerText = 'DD.MM.YY';
   } else {
     const date = endDate.innerText;
@@ -250,7 +247,7 @@ const AddDaysInSpan = (startDate, endDate) => {
   }
   AddStartDayInSpan(startDate);
   AddEndDayInSpan(endDate);
-  if (startDate !== false && endDate !== false) {
+  if (startDate && endDate) {
     document.getElementById('top__calendar').classList.toggle('disable');
   }
 };
@@ -261,23 +258,21 @@ document.querySelectorAll('.cal_day-num-d').forEach((element, index) => {
     event.preventDefault();
     if (!event.target.classList.contains('cal_past-day')) {
       if (startDate === false) {
+        event.target.classList.toggle('cal_clicked-day');
         if (event.target === endDate) {
           //Check if choosing cell is already clicked
-          event.target.classList.toggle('cal_clicked-day');
           endDate = false;
         } else {
-          event.target.classList.toggle('cal_clicked-day');
           startDate = event.target;
           startDate.index_ = index; //This is index in big matrix which contains current month and next month
           madePeriodOfTraveling(startDate, endDate);
         }
       } else if (endDate === false) {
+        event.target.classList.toggle('cal_clicked-day');
         if (event.target === startDate) {
           //Check if choosing cell is already clicked
-          event.target.classList.toggle('cal_clicked-day');
           startDate = false;
         } else {
-          event.target.classList.toggle('cal_clicked-day');
           endDate = event.target;
           endDate.index_ = index;
           madePeriodOfTraveling(startDate, endDate);
@@ -293,13 +288,13 @@ document.querySelectorAll('.cal_day-num-d').forEach((element, index) => {
         }
 
         if (event.target === startDate) {
-          removeFromStart(startDate, endDate);
+          removeFrom('start', startDate, endDate);
           startDate = false;
         } else if (event.target === endDate) {
-          removeFromEnd(startDate, endDate);
+          removeFrom('end', startDate, endDate);
           endDate = false;
         } else {
-          removeFromEnd(startDate, endDate);
+          removeFrom( 'end',startDate, endDate);
           startDate.classList.remove('cal_clicked-day');
           endDate = false;
           startDate = event.target;
@@ -312,7 +307,7 @@ document.querySelectorAll('.cal_day-num-d').forEach((element, index) => {
   });
 });
 
-//mobile form, dates
+
 document.getElementById('cal_current-month-name-adaptive_1').innerText = `${
   months[today.getMonth()]
 } ${today.getFullYear()}`;
@@ -321,9 +316,9 @@ document.getElementById('cal_next-month-name-adaptive_2').innerText = `${
 } ${today.getFullYear()}`;
 
 const findToday_a = (index, innerIndex) => {
-  const s = '.cal_day-num-a';
+  const dayNumber = '.cal_day-num-a';
   const resIndex = index * 7 + innerIndex;
-  document.querySelectorAll(s)[resIndex].classList.add('cal_today');
+  document.querySelectorAll(dayNumber)[resIndex].classList.add('cal_today');
   const pastDays = document.querySelectorAll('.cal_day-num-a');
   for (let i = 0; i < index * 7 + innerIndex; i++) {
     pastDays[i].classList.add('cal_past-day');
@@ -342,23 +337,22 @@ const AddDayInSpan_a = (date_, selector) => {
     .classList.toggle('disable');
 };
 
+const addListenerToDateFields_a = (selector) =>{
+  const ending = (selector === 1) ? 'in' : 'out';
+  document.getElementById(`check-${ending}`).addEventListener('click', (event) => {
+    event.preventDefault();
+    event.target.parentElement.classList.toggle('active-check');
+    document
+      .getElementById(`top__calendar-adaptive_${selector}`)
+      .classList.toggle('disable');
+  });
+};
+
 //Click on start date
-document.getElementById('check-in').addEventListener('click', (event) => {
-  event.preventDefault();
-  event.target.parentElement.classList.toggle('active-check');
-  document
-    .getElementById('top__calendar-adaptive_1')
-    .classList.toggle('disable');
-});
+addListenerToDateFields_a(1);
 
 //Click on end date
-document.getElementById('check-out').addEventListener('click', (event) => {
-  event.preventDefault();
-  event.target.parentElement.classList.toggle('active-check');
-  document
-    .getElementById('top__calendar-adaptive_2')
-    .classList.toggle('disable');
-});
+addListenerToDateFields_a(2);
 
 //Created calendar days
 const createCalendarDays = (selector) => {
@@ -394,15 +388,15 @@ document.querySelectorAll('.cal_day-num-a').forEach((element) => {
       )
         ? 1
         : 2;
-      if (startDate_a === false) {
+      event.target.classList.toggle('cal_clicked-day');
+      if (!startDate_a) {
         //If start date is not choosing
         startDate_a = event.target;
-        event.target.classList.toggle('cal_clicked-day');
         AddDayInSpan_a(startDate_a, selector);
       } else {
         startDate_a.classList.toggle('cal_clicked-day');
         startDate_a = event.target;
-        event.target.classList.toggle('cal_clicked-day');
+
         AddDayInSpan_a(startDate_a, selector);
       }
     }

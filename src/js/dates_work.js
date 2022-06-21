@@ -14,6 +14,14 @@ export const months = [
   'December',
 ];
 
+const makeCalendarMatrix = (daysInMonth, daysInWeek) =>{
+  const matrix = new Array(Math.ceil(daysInMonth / 7));
+  for (let i = 0; i < matrix.length; i++) {
+    matrix[i] = new Array(daysInWeek);
+  }
+  return matrix;
+};
+
 export function getCalendarMonth(daysInMonth, daysInWeek, dayOfWeek) {
   if (dayOfWeek >= daysInWeek) {
     return false;
@@ -22,10 +30,7 @@ export function getCalendarMonth(daysInMonth, daysInWeek, dayOfWeek) {
   const todayDay = new Date().getDate();
 
   let count = daysInMonth - dayOfWeek + 1;
-  const matrix = new Array(Math.ceil(daysInMonth / 7));
-  for (let i = 0; i < matrix.length; i++) {
-    matrix[i] = new Array(daysInWeek);
-  }
+  const matrix = makeCalendarMatrix(daysInMonth, daysInWeek);
 
   let start = false; // if month is start
   for (let i = 0; i < Math.ceil(daysInMonth / daysInWeek); i++) {

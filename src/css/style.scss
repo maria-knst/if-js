@@ -123,7 +123,7 @@ body {
 //_____________________TOP-SECTION___________________________
 $calendar-width: 100%;
 
-@mixin top_calendar{
+@mixin top_calendar {
   background: $color_white;
   display: flex;
   justify-content: space-between;
@@ -148,7 +148,7 @@ $calendar-width: 100%;
   }
 }
 
-@mixin top_calendar-month{
+@mixin top_calendar-month {
   margin: 2% 4% 4% 4%;
   display: flex;
   flex-direction: column;
@@ -158,13 +158,13 @@ $calendar-width: 100%;
   color: $color_calendar-grey;
 }
 
-@mixin top_calendar-wrapper{
+@mixin top_calendar-wrapper {
   font-family: 'Roboto', sans-serif;
   color: $color_dark-grey;
   width: 100%;
 }
 
-@mixin top_calendar-grid-wrapper{
+@mixin top_calendar-grid-wrapper {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(5, 1fr);
@@ -197,7 +197,7 @@ $calendar-width: 100%;
   }
 }
 
-@mixin active_form-field{
+@mixin active_form-field {
   background: rgba(246, 205, 21, 0.15);
 }
 
@@ -626,21 +626,21 @@ $calendar-width: 100%;
       gap: 8px;
       margin-bottom: 8px;
       position: relative;
-      .top__calendar-adaptive{
+      .top__calendar-adaptive {
         position: absolute;
-        top:110%;
+        top: 110%;
         width: 100%;
         background: $color_white;
         color: $color_dark-grey;
         @include top_calendar;
         border: 1px solid $color_tawny;
-        .calendar-month{
+        .calendar-month {
           @include top_calendar-month;
           width: 100%;
-          .calendar-wrapper{
+          .calendar-wrapper {
             @include top_calendar-wrapper;
           }
-          .cal_grid-wrapper{
+          .cal_grid-wrapper {
             @include top_calendar-grid-wrapper;
             .cal_day {
               padding: 8%;
@@ -651,7 +651,6 @@ $calendar-width: 100%;
       .disable {
         display: none;
       }
-    //  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     }
     .top__check-in,
     .top__check-out {
@@ -664,7 +663,7 @@ $calendar-width: 100%;
       padding: 4px;
     }
 
-    .active-check{
+    .active-check {
       border: 1px solid $color_light-blue;
     }
 
