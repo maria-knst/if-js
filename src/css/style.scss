@@ -123,18 +123,10 @@ body {
 //_____________________TOP-SECTION___________________________
 $calendar-width: 100%;
 
-@mixin top_calendar {
-  background: $color_white;
-  display: flex;
-  justify-content: space-between;
-  position: absolute;
-  z-index: 2;
-  border-radius: $top_border-radius;
-  border: 0.3px solid $color-light-blue;
+@mixin slide_up {
   animation-duration: 1s;
   animation-name: slideup;
   animation-direction: alternate;
-  $calendar-width: 100%;
 
   @keyframes slideup {
     from {
@@ -147,6 +139,21 @@ $calendar-width: 100%;
     }
   }
 }
+
+
+@mixin top_calendar {
+  background: $color_white;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  z-index: 2;
+  border-radius: $top_border-radius;
+  border: 0.3px solid $color-light-blue;
+  $calendar-width: 100%;
+
+  @include slide_up;
+}
+
 
 @mixin top_calendar-month {
   margin: 2% 4% 4% 4%;
@@ -431,20 +438,7 @@ $calendar-width: 100%;
       border-radius: $top_border-radius;
       padding: 5%;
       border: 0.3px solid $color-light-blue;
-      animation-duration: 1s;
-      animation-name: slideup;
-      animation-direction: alternate;
-
-      @keyframes slideup {
-        from {
-          top: -30%;
-          opacity: 0;
-        }
-        to {
-          top: 120%;
-          opacity: 1;
-        }
-      }
+      @include slide_up;
       .top__inner-filter {
         display: flex;
         justify-content: space-between;

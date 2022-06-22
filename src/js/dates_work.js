@@ -14,7 +14,7 @@ export const months = [
   'December',
 ];
 
-const makeCalendarMatrix = (daysInMonth, daysInWeek) =>{
+const makeCalendarMatrix = (daysInMonth, daysInWeek) => {
   const matrix = new Array(Math.ceil(daysInMonth / 7));
   for (let i = 0; i < matrix.length; i++) {
     matrix[i] = new Array(daysInWeek);

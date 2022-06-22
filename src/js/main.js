@@ -1,8 +1,6 @@
 import data from './data_hostels.js';
 import { daysOfWeek, months, calendarMonth } from './dates_work.js';
 
-
-
 const homesContainer = document.querySelector('.homes__container');
 const homesFlexContainer = homesContainer.querySelector(
   '.places__flex-container',
@@ -37,8 +35,6 @@ data.forEach((element, index) => {
   }
 });
 
-
-
 const filterMembers = ['adult', 'child', 'room'];
 const madeChildrenAgeDiv = () => {
   const childAgeDiv = document.getElementById('top__filter-with-children');
@@ -65,7 +61,9 @@ const removeSelectorOfAge = () => {
 
 const toggleChildrenAge = (num) => {
   const element = document.querySelector('.top__filter-with-children');
-  (num < 1) ? element.classList.add('temporarily-hidden') : element.classList.remove('temporarily-hidden');
+  num < 1
+    ? element.classList.add('temporarily-hidden')
+    : element.classList.remove('temporarily-hidden');
 };
 
 const decrement = (event, element1, element2, index) => {
@@ -113,14 +111,16 @@ const addListenersToCountButtons = () => {
           index,
         );
       });
-    document.getElementById(`${item}-plus`).addEventListener('click', (event) => {
-      increment(
-        event,
-        document.getElementById(`${item}-amount`),
-        document.getElementById(`${item}-span`),
-        index,
-      );
-    });
+    document
+      .getElementById(`${item}-plus`)
+      .addEventListener('click', (event) => {
+        increment(
+          event,
+          document.getElementById(`${item}-amount`),
+          document.getElementById(`${item}-span`),
+          index,
+        );
+      });
   });
 };
 
@@ -131,9 +131,6 @@ document.getElementById('amount-field').addEventListener('click', (event) => {
   event.preventDefault();
   document.getElementById('top__people-filter').classList.toggle('disable');
 });
-
-
-
 
 const today = new Date();
 
@@ -216,10 +213,10 @@ const madePeriodOfTraveling = (startDate, endDate) => {
 
 const removeFrom = (selector, startDate, endDate) => {
   madeGreyCells(startDate, endDate, 'remove');
-  (selector === 'start') ? startDate.classList.remove('cal_clicked-day') :
-    endDate.classList.remove('cal_clicked-day');
+  selector === 'start'
+    ? startDate.classList.remove('cal_clicked-day')
+    : endDate.classList.remove('cal_clicked-day');
 };
-
 
 const AddStartDayInSpan = (startDate) => {
   if (!startDate) {
@@ -294,7 +291,7 @@ document.querySelectorAll('.cal_day-num-d').forEach((element, index) => {
           removeFrom('end', startDate, endDate);
           endDate = false;
         } else {
-          removeFrom( 'end',startDate, endDate);
+          removeFrom('end', startDate, endDate);
           startDate.classList.remove('cal_clicked-day');
           endDate = false;
           startDate = event.target;
@@ -306,7 +303,6 @@ document.querySelectorAll('.cal_day-num-d').forEach((element, index) => {
     }
   });
 });
-
 
 document.getElementById('cal_current-month-name-adaptive_1').innerText = `${
   months[today.getMonth()]
@@ -337,15 +333,17 @@ const AddDayInSpan_a = (date_, selector) => {
     .classList.toggle('disable');
 };
 
-const addListenerToDateFields_a = (selector) =>{
-  const ending = (selector === 1) ? 'in' : 'out';
-  document.getElementById(`check-${ending}`).addEventListener('click', (event) => {
-    event.preventDefault();
-    event.target.parentElement.classList.toggle('active-check');
-    document
-      .getElementById(`top__calendar-adaptive_${selector}`)
-      .classList.toggle('disable');
-  });
+const addListenerToDateFields_a = (selector) => {
+  const ending = selector === 1 ? 'in' : 'out';
+  document
+    .getElementById(`check-${ending}`)
+    .addEventListener('click', (event) => {
+      event.preventDefault();
+      event.target.parentElement.classList.toggle('active-check');
+      document
+        .getElementById(`top__calendar-adaptive_${selector}`)
+        .classList.toggle('disable');
+    });
 };
 
 //Click on start date
