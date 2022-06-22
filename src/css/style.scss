@@ -124,22 +124,8 @@ body {
 $calendar-width: 100%;
 
 @mixin slide_up {
-  animation-duration: 1s;
-  animation-name: slideup;
-  animation-direction: alternate;
-
-  @keyframes slideup {
-    from {
-      top: -30%;
-      opacity: 0;
-    }
-    to {
-      top: 120%;
-      opacity: 1;
-    }
-  }
+  transition: all 0.5s linear;
 }
-
 
 @mixin top_calendar {
   background: $color_white;
@@ -153,7 +139,6 @@ $calendar-width: 100%;
 
   @include slide_up;
 }
-
 
 @mixin top_calendar-month {
   margin: 2% 4% 4% 4%;
@@ -492,7 +477,11 @@ $calendar-width: 100%;
       }
     }
     .disable {
-      display: none;
+      visibility: hidden;
+      opacity: 0;
+      z-index: -1;
+      pointer-events: none;
+      top: 80%;
     }
   }
 
@@ -642,8 +631,12 @@ $calendar-width: 100%;
           }
         }
       }
-      .disable {
-        display: none;
+      .disable_a {
+        visibility: hidden;
+        opacity: 0;
+        z-index: -1;
+        pointer-events: none;
+        top: 80%;
       }
     }
     .top__check-in,

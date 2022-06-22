@@ -330,7 +330,7 @@ const AddDayInSpan_a = (date_, selector) => {
   document.getElementById(str).innerText = date + ' ' + month_year;
   document
     .getElementById(`top__calendar-adaptive_${selector}`)
-    .classList.toggle('disable');
+    .classList.toggle('disable_a');
 };
 
 const addListenerToDateFields_a = (selector) => {
@@ -342,7 +342,7 @@ const addListenerToDateFields_a = (selector) => {
       event.target.parentElement.classList.toggle('active-check');
       document
         .getElementById(`top__calendar-adaptive_${selector}`)
-        .classList.toggle('disable');
+        .classList.toggle('disable_a');
     });
 };
 
