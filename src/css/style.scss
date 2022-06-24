@@ -5,12 +5,14 @@ $color_white: #ffffff;
 $color_very-light-grey: #f3f3f4;
 $color_light-black: #333333;
 $color_dark-grey: #383838;
+$color_calendar-grey: #4d4d4d;
 $color_light-grey: #eaf0f9;
 $color_grey: #bfbfbf;
 $color_medium-grey: #8a8989;
 $color_tawny: #f5bd41;
 $color_dark-blue: #10367c;
 $color_light-blue: #3077c6;
+$top_border-radius: 8px;
 
 $main_font-family: 'Roboto', sans-serif;
 
@@ -119,6 +121,77 @@ body {
 }
 
 //_____________________TOP-SECTION___________________________
+$calendar-width: 100%;
+
+@mixin slide_up {
+  transition: all 0.5s linear;
+}
+
+@mixin top_calendar {
+  background: $color_white;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  z-index: 2;
+  border-radius: $top_border-radius;
+  border: 0.3px solid $color-light-blue;
+  $calendar-width: 100%;
+
+  @include slide_up;
+}
+
+@mixin top_calendar-month {
+  margin: 2% 4% 4% 4%;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  border-radius: $top_border-radius;
+  border: 0.3px solid $color-white;
+  color: $color_calendar-grey;
+}
+
+@mixin top_calendar-wrapper {
+  font-family: 'Roboto', sans-serif;
+  color: $color_dark-grey;
+  width: 100%;
+}
+
+@mixin top_calendar-grid-wrapper {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  .cal_day {
+    font-weight: 300;
+    font-size: 14px;
+    padding: 28%;
+    width: #{$calendar-width}/ 7;
+    height: #{$calendar-width}/ 7;
+  }
+  .cal_day-num:hover {
+    background: $color_grey;
+  }
+
+  .cal_today {
+    color: $color_light-blue;
+  }
+  .cal_past-day {
+    color: $color-grey;
+  }
+  .cal_clicked-day {
+    background: $color_light-blue;
+    color: $color_white;
+  }
+  .cal_choosing-day {
+    background: $color_light-grey;
+  }
+  .cal_not-current-month {
+    visibility: hidden;
+  }
+}
+
+@mixin active_form-field {
+  background: rgba(246, 205, 21, 0.15);
+}
 
 .top-section {
   background-image: url(../images/Top-section-castelmezzano.jpg);
@@ -250,7 +323,7 @@ body {
     display: flex;
     gap: 0;
     background: #ffffff;
-    border-radius: 8px;
+    border-radius: $top_border-radius;
     padding-left: 8px;
   }
 
@@ -266,25 +339,160 @@ body {
 
   .date {
     width: 21%;
-    border-radius: 8px;
-    border: 3px solid $color_tawny;
+    border: none;
+    border-radius: $top_border-radius;
   }
 
   .people {
     width: 25%;
-    border: none;
+    border-radius: $top_border-radius;
   }
 
-  .but {
+  .top__div-but {
     text-align: center;
-    background: $color_white;
     font-size: 18px;
+    position: relative;
+    border: 3px solid $color_white;
+
+    .inner-but {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: $top_border-radius;
+      background: $color_white;
+      position: relative;
+      z-index: 4;
+    }
+    .inner-but:active {
+      @include active_form-field;
+    }
+
+    .top__calendar {
+      @include top_calendar;
+      top: 120%;
+      width: 225%;
+
+      .calendar-month {
+        @include top_calendar-month;
+        width: 45%;
+
+        .calendar-wrapper {
+          @include top_calendar-wrapper;
+
+          .cal_month-name {
+            font-weight: 500;
+            font-size: 18px;
+          }
+
+          .cal_grid-wrapper {
+            @include top_calendar-grid-wrapper;
+          }
+        }
+      }
+      .calendar-month:hover {
+        border: 0.3px solid $color-light-grey;
+      }
+
+      .cal_arrow {
+        margin-top: 2%;
+        height: 16px;
+        position: absolute;
+        opacity: 0.8;
+      }
+      .cal_arrow:active {
+        opacity: 1;
+      }
+
+      .calendar_arrow1 {
+        left: 4%;
+        transform: rotate(180deg);
+      }
+      .calendar_arrow2 {
+        margin-right: 2%;
+        left: 95%;
+      }
+    }
+
+    .top__people-filter {
+      position: absolute;
+      z-index: 1;
+      width: 84%;
+      background: $color_white;
+      right: 0;
+      top: 120%;
+      border-radius: $top_border-radius;
+      padding: 5%;
+      border: 0.3px solid $color-light-blue;
+      @include slide_up;
+      .top__inner-filter {
+        display: flex;
+        justify-content: space-between;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+        color: $color_dark-grey;
+        margin: 4% 0;
+        .filter_inner-button,
+        .filter_inner-num-button {
+          width: 30px;
+          height: 30px;
+          border: 1px solid $color_light-blue;
+          background: $color_white;
+          font-size: 16px;
+        }
+        .filter_inner-button {
+          color: $color-light-blue;
+        }
+        .filter_inner-num-button {
+          border: none;
+        }
+        .filter__button-disable {
+          border: 1px solid $color_light-grey;
+          color: $color-light-grey;
+        }
+      }
+      .top__filter-with-children {
+        color: $color_dark-grey;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+        font-size: 12px;
+        display: flex;
+        flex-direction: column;
+        p {
+          text-align: left;
+          margin: 8% 0;
+        }
+        .top__child-years {
+          width: 45%;
+          height: 30px;
+          border: 1px solid $color_light-blue;
+          font-family: 'Roboto', sans-serif;
+          font-weight: 400;
+          font-size: 12px;
+          color: $color-light-blue;
+          margin: 2% 0;
+        }
+      }
+      .temporarily-hidden {
+        display: none;
+      }
+    }
+    .disable {
+      visibility: hidden;
+      opacity: 0;
+      z-index: -1;
+      pointer-events: none;
+      top: 80%;
+    }
+  }
+
+  .top__div-but:hover {
+    border: 3px solid $color_tawny;
   }
 
   .top-search-button {
     width: 16%;
     border: none;
-    border-radius: 8px;
+    border-radius: $top_border-radius;
     background: $color_light-blue;
     color: $color_white;
     font-size: 24px;
@@ -400,6 +608,36 @@ body {
       display: flex;
       gap: 8px;
       margin-bottom: 8px;
+      position: relative;
+      .top__calendar-adaptive {
+        position: absolute;
+        top: 110%;
+        width: 100%;
+        background: $color_white;
+        color: $color_dark-grey;
+        @include top_calendar;
+        border: 1px solid $color_tawny;
+        .calendar-month {
+          @include top_calendar-month;
+          width: 100%;
+          .calendar-wrapper {
+            @include top_calendar-wrapper;
+          }
+          .cal_grid-wrapper {
+            @include top_calendar-grid-wrapper;
+            .cal_day {
+              padding: 8%;
+            }
+          }
+        }
+      }
+      .disable_a {
+        visibility: hidden;
+        opacity: 0;
+        z-index: -1;
+        pointer-events: none;
+        top: 80%;
+      }
     }
     .top__check-in,
     .top__check-out {
@@ -411,6 +649,11 @@ body {
       border-radius: 4px;
       padding: 4px;
     }
+
+    .active-check {
+      border: 1px solid $color_light-blue;
+    }
+
     .top__date-button {
       border: none;
       background: #ffffff;

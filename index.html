@@ -58,11 +58,121 @@
               value="New York"
               required
             />
-            <button class="date but" id="date">
-              Tue 15 Sept — Sat 19 Sept
-            </button>
 
-            <button class="people but">2 Adults — 0 Children — 1 Room</button>
+            <div class="date top__div-but" id="date">
+              <button id="date-field" class="inner-but">
+                <span id="start-date">Tue 15 Sept</span> —
+                <span id="end-date">Sat 19 Sept</span>
+              </button>
+              <div id="top__calendar" class="top__calendar disable">
+                <img
+                  class="cal_arrow calendar_arrow1"
+                  src="./src/images/svg/Arrow.svg"
+                  alt="arrow"
+                />
+                <div class="calendar-month">
+                  <div class="calendar-wrapper calendar_current-month">
+                    <h4 class="cal_month-name" id="cal_current-month-name"></h4>
+                    <div class="cal_grid-wrapper cal_grid-wrapper-d"></div>
+                  </div>
+                </div>
+                <div class="calendar-month">
+                  <div class="calendar-wrapper calendar_next-month">
+                    <h4 class="cal_month-name" id="cal_next-month-name"></h4>
+                    <div class="cal_grid-wrapper cal_grid-wrapper-d"></div>
+                  </div>
+                </div>
+                <img
+                  class="cal_arrow calendar_arrow2"
+                  src="./src/images/svg/Arrow.svg"
+                  alt="arrow"
+                />
+              </div>
+            </div>
+
+            <div class="people top__div-but">
+              <button id="amount-field" class="inner-but">
+                <span id="adult-span">2</span> Adults —
+                <span id="child-span">0</span> Children —
+                <span id="room-span">1</span> Room
+              </button>
+
+              <div class="top__people-filter disable" id="top__people-filter">
+                <div class="top__inner-filter">
+                  <span>Adults</span>
+                  <div class="top__filter-buttons">
+                    <button
+                      id="adult-minus"
+                      class="filter_minus filter_inner-button"
+                    >
+                      -
+                    </button>
+                    <button
+                      id="adult-amount"
+                      class="filter_amount filter_inner-num-button"
+                    >
+                      2
+                    </button>
+                    <button
+                      id="adult-plus"
+                      class="filter_plus filter_inner-button"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+                <div class="top__inner-filter">
+                  <span>Children</span>
+                  <div class="top__filter-buttons">
+                    <button
+                      id="child-minus"
+                      class="filter_minus filter_inner-button"
+                    >
+                      -
+                    </button>
+                    <button
+                      id="child-amount"
+                      class="filter_amount filter_inner-num-button"
+                    >
+                      0
+                    </button>
+                    <button
+                      id="child-plus"
+                      class="filter_plus filter_inner-button"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+                <div class="top__inner-filter">
+                  <span>Rooms</span>
+                  <div class="top__filter-buttons">
+                    <button
+                      id="room-minus"
+                      class="filter_minus filter_inner-button"
+                    >
+                      -
+                    </button>
+                    <button
+                      id="room-amount"
+                      class="filter_amount filter_inner-num-button"
+                    >
+                      1
+                    </button>
+                    <button
+                      id="room-plus"
+                      class="filter_plus filter_inner-button"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+                <div
+                  class="top__filter-with-children temporarily-hidden"
+                  id="top__filter-with-children"
+                ></div>
+              </div>
+            </div>
             <button class="top-search-button">Search</button>
           </div>
         </form>
@@ -93,6 +203,34 @@
                 Sat 19 Sept 2020
               </button>
             </div>
+            <div
+              class="top__calendar-adaptive disable_a"
+              id="top__calendar-adaptive_1"
+            >
+              <div class="calendar-month">
+                <div class="calendar-wrapper calendar_current-month">
+                  <h4
+                    class="cal_month-name"
+                    id="cal_current-month-name-adaptive_1"
+                  ></h4>
+                  <div class="cal_grid-wrapper cal_grid-wrapper-a1"></div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="top__calendar-adaptive disable_a"
+              id="top__calendar-adaptive_2"
+            >
+              <div class="calendar-month">
+                <div class="calendar-wrapper calendar_next-month">
+                  <h4
+                    class="cal_month-name"
+                    id="cal_next-month-name-adaptive_2"
+                  ></h4>
+                  <div class="cal_grid-wrapper cal_grid-wrapper-a2"></div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="top-frame-element top__amount">
             <div class="top__amount-element top__amount1">
@@ -103,8 +241,8 @@
                 class="top__amount-input medium-font"
                 id="top-1"
                 type="number"
-                max="15"
-                min="0"
+                max="30"
+                min="1"
                 value="2"
               />
             </div>
@@ -116,7 +254,7 @@
                 class="top__amount-input medium-font"
                 id="top-2"
                 type="number"
-                max="15"
+                max="10"
                 min="0"
                 value="0"
               />
@@ -129,8 +267,8 @@
                 class="top__amount-input medium-font"
                 id="top-3"
                 type="number"
-                max="15"
-                min="0"
+                max="30"
+                min="1"
                 value="1"
               />
             </div>
@@ -566,5 +704,6 @@
 
     <script type="module" src="./src/js/main.js"></script>
     <script type="module" src="/src/js/data_hostels.js"></script>
+    <script type="module" src="/src/js/dates_work.js"></script>
   </body>
 </html>
