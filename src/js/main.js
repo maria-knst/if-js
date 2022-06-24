@@ -1,4 +1,3 @@
-import data from './data_hostels.js';
 import { daysOfWeek, months, calendarMonth } from './dates_work.js';
 
 const homesContainer = document.querySelector('.homes__container');
@@ -6,34 +5,46 @@ const homesFlexContainer = homesContainer.querySelector(
   '.places__flex-container',
 );
 
-data.forEach((element, index) => {
-  homesFlexContainer.innerHTML += `
+fetch('https://fe-student-api.herokuapp.com/api/hotels/popular')
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`${response.status}, ${response.statusText}`);
+    }
+    return response.json();
+  })
+  .then((data_) => {
+    data_.forEach((element, index) => {
+      homesFlexContainer.innerHTML += `
     <div class="places__element col-3">
-            <figure>
-              <img
+        <img
                 src=${element.imageUrl}
                 id="homes_${index + 1}"
                 class="places__image"
                 alt="home-img-${index + 1}"
-              />
-              <figcaption class="places__label">${element.name}</figcaption>
-            </figure>
-            <p class="homes__destination">${element.city}, ${
-    element.country
-  }</p>
+        />
+        <div>
+            <p class="places__label">${element.name}</p>
+            <p class="homes__destination">${element.city}, ${element.country}
+            </p>
+         </div>
+            
           </div>
   `;
-  if (index >= 2) {
-    const placesElement =
-      homesFlexContainer.querySelectorAll('.places__element')[index];
-    placesElement.classList.add('hidden');
-  }
-  if (index >= 4) {
-    const placesElement =
-      homesFlexContainer.querySelectorAll('.places__element')[index];
-    placesElement.classList.add('temporarily-hidden');
-  }
-});
+      if (index >= 2) {
+        const placesElement =
+          homesFlexContainer.querySelectorAll('.places__element')[index];
+        placesElement.classList.add('hidden');
+      }
+      if (index >= 4) {
+        const placesElement =
+          homesFlexContainer.querySelectorAll('.places__element')[index];
+        placesElement.classList.add('temporarily-hidden');
+      }
+    });
+  })
+  .catch((err) => {
+    console.log(err.message);
+  });
 
 const filterMembers = ['adult', 'child', 'room'];
 const madeChildrenAgeDiv = () => {
@@ -151,11 +162,11 @@ document.querySelectorAll('.cal_grid-wrapper-d').forEach((element) => {
   });
   calendarMonth.forEach((item, index) => {
     item.forEach((innerItem, innerIndex) => {
-      innerItem.isCurrentMonth === true
+      innerItem.isCurrentMonth
         ? (element.innerHTML += `<div class="cal_day cal_day-num cal_day-num-d">${innerItem.daysInMonth}</div>`)
         : (element.innerHTML += `<div class="cal_day cal_day-num cal_day-num-d cal_not-current-month">${innerItem.daysInMonth}</div>`);
 
-      if (innerItem.currentDay === true) {
+      if (innerItem.currentDay) {
         findToday(index, innerIndex);
       }
     });
@@ -254,7 +265,7 @@ document.querySelectorAll('.cal_day-num-d').forEach((element, index) => {
   element.addEventListener('click', (event) => {
     event.preventDefault();
     if (!event.target.classList.contains('cal_past-day')) {
-      if (startDate === false) {
+      if (!startDate) {
         event.target.classList.toggle('cal_clicked-day');
         if (event.target === endDate) {
           //Check if choosing cell is already clicked
@@ -264,7 +275,7 @@ document.querySelectorAll('.cal_day-num-d').forEach((element, index) => {
           startDate.index_ = index; //This is index in big matrix which contains current month and next month
           madePeriodOfTraveling(startDate, endDate);
         }
-      } else if (endDate === false) {
+      } else if (!endDate) {
         event.target.classList.toggle('cal_clicked-day');
         if (event.target === startDate) {
           //Check if choosing cell is already clicked

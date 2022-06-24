@@ -767,12 +767,17 @@ body {
   margin: 105px auto 0;
   position: relative;
 }
-.places__flex-container .places__label {
+.places__flex-container .places__element {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.places__flex-container .places__element .places__label {
   color: #3077c6;
-  padding: 24px 0;
+  margin: 24px 0;
   font-size: 24px;
 }
-.places__flex-container .places__image {
+.places__flex-container .places__element .places__image {
   width: 100%;
   height: auto;
 }

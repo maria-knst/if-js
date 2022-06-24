@@ -866,16 +866,21 @@ $calendar-width: 100%;
   margin: 105px auto 0;
   position: relative;
 
-  .places__label {
-    color: $color_light-blue;
-    padding: 24px 0;
-    font-size: 24px;
+  .places__element {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .places__label {
+      color: $color_light-blue;
+      margin: 24px 0;
+      font-size: 24px;
+    }
+    .places__image {
+      width: 100%;
+      height: auto;
+    }
   }
 
-  .places__image {
-    width: 100%;
-    height: auto;
-  }
   .places__arrow {
     display: block;
     position: absolute;
