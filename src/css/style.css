@@ -775,7 +775,7 @@ body {
 .places__flex-container .places__element .places__home-description {
   background: #eaf0f9;
   position: relative;
-  top: -30%;
+  top: -25%;
   width: 100%;
   transition: all 0.5s;
 }
@@ -815,6 +815,16 @@ body {
 .places__flex-container .places__arrow img {
   width: 40%;
   height: 40%;
+}
+.places__flex-container #places__arrow-prev {
+  display: block;
+  position: absolute;
+  top: 30%;
+  z-index: 4;
+  left: -25px;
+}
+.places__flex-container #places__arrow-prev img {
+  transform: rotate(180deg);
 }
 @media screen and (max-width: 840px) {
   .places__flex-container {
@@ -869,7 +879,6 @@ body {
   width: 100%;
   max-height: 70%;
   opacity: 0.85;
-  object-fit: scale-down;
 }
 .homes .places__flex-container .temporarily-hidden {
   display: none;

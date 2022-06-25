@@ -38,14 +38,18 @@ const formHomesElements = (data_) => {
 };
 
 const addListenersToHomesElements = () => {
-  homesFlexContainer.querySelectorAll('.places__image').forEach( (element) => {
+  homesFlexContainer.querySelectorAll('.places__image').forEach((element) => {
     element.addEventListener('mouseenter', (event) => {
-      event.target.parentElement.querySelector('.places__home-description').classList.toggle('places__home-description_hovered');
+      event.target.parentElement
+        .querySelector('.places__home-description')
+        .classList.toggle('places__home-description_hovered');
     });
   });
-  homesFlexContainer.querySelectorAll('.places__image').forEach( (element) => {
+  homesFlexContainer.querySelectorAll('.places__image').forEach((element) => {
     element.addEventListener('mouseout', (event) => {
-      event.target.parentElement.querySelector('.places__home-description').classList.toggle('places__home-description_hovered');
+      event.target.parentElement
+        .querySelector('.places__home-description')
+        .classList.toggle('places__home-description_hovered');
     });
   });
 };
@@ -64,6 +68,8 @@ fetch('https://fe-student-api.herokuapp.com/api/hotels/popular')
   .catch((err) => {
     console.log(err.message);
   });
+
+
 
 
 
@@ -335,6 +341,8 @@ document.querySelectorAll('.cal_day-num-d').forEach((element, index) => {
     }
   });
 });
+
+
 
 document.getElementById('cal_current-month-name-adaptive_1').innerText = `${
   months[today.getMonth()]
