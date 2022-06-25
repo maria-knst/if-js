@@ -866,10 +866,24 @@ $calendar-width: 100%;
   margin: 105px auto 0;
   position: relative;
 
+
   .places__element {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    .places__home-description{
+      background: $color_light-grey;
+      position: relative;
+      top: -30%;
+      //padding-bottom: 15%;
+      width: 100%;
+      transition: all 0.5s;
+    }
+    .places__home-description_hovered{
+      top: 0;
+      //padding-bottom: 0;
+    }
     .places__label {
       color: $color_light-blue;
       margin: 24px 0;
@@ -877,14 +891,16 @@ $calendar-width: 100%;
     }
     .places__image {
       width: 100%;
-      height: auto;
+    }
+    .places__image:hover{
+      opacity: 1;
     }
   }
 
   .places__arrow {
     display: block;
     position: absolute;
-    top: 40%;
+    top: 30%;
     z-index: 4;
     left: calc(100% - 25px);
     transform: translate(0%, -50%);
@@ -953,6 +969,14 @@ $calendar-width: 100%;
   .places__flex-container {
     .homes__destination {
       color: $color_grey;
+      margin-bottom: 8px;
+    }
+    .places__image {
+      transition: all 0.5s linear;
+      width: 100%;
+      max-height: 70%;
+      opacity: 0.85;
+      object-fit: scale-down;
     }
     .temporarily-hidden {
       display: none;

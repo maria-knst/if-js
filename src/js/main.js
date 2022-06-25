@@ -5,6 +5,51 @@ const homesFlexContainer = homesContainer.querySelector(
   '.places__flex-container',
 );
 
+const formHomesElements = (data_) => {
+  data_.forEach((element, index) => {
+    homesFlexContainer.innerHTML += `
+    <div class="places__element col-3">
+        <img
+                src=${element.imageUrl}
+                id="homes_${index + 1}"
+                class="places__image"
+                alt="home-img-${index + 1}"
+        />
+        <div class="places__home-description">
+            <p class="places__label">${element.name}</p>
+            <p class="homes__destination">${element.city}, ${element.country}
+            </p>
+         </div>
+
+          </div>
+  `;
+
+    if (index >= 2) {
+      const placesElement =
+        homesFlexContainer.querySelectorAll('.places__element')[index];
+      placesElement.classList.add('hidden');
+    }
+    if (index >= 4) {
+      const placesElement =
+        homesFlexContainer.querySelectorAll('.places__element')[index];
+      placesElement.classList.add('temporarily-hidden');
+    }
+  });
+};
+
+const addListenersToHomesElements = () => {
+  homesFlexContainer.querySelectorAll('.places__image').forEach( (element) => {
+    element.addEventListener('mouseenter', (event) => {
+      event.target.parentElement.querySelector('.places__home-description').classList.toggle('places__home-description_hovered');
+    });
+  });
+  homesFlexContainer.querySelectorAll('.places__image').forEach( (element) => {
+    element.addEventListener('mouseout', (event) => {
+      event.target.parentElement.querySelector('.places__home-description').classList.toggle('places__home-description_hovered');
+    });
+  });
+};
+
 fetch('https://fe-student-api.herokuapp.com/api/hotels/popular')
   .then((response) => {
     if (!response.ok) {
@@ -13,38 +58,14 @@ fetch('https://fe-student-api.herokuapp.com/api/hotels/popular')
     return response.json();
   })
   .then((data_) => {
-    data_.forEach((element, index) => {
-      homesFlexContainer.innerHTML += `
-    <div class="places__element col-3">
-        <img
-                src=${element.imageUrl}
-                id="homes_${index + 1}"
-                class="places__image"
-                alt="home-img-${index + 1}"
-        />
-        <div>
-            <p class="places__label">${element.name}</p>
-            <p class="homes__destination">${element.city}, ${element.country}
-            </p>
-         </div>
-            
-          </div>
-  `;
-      if (index >= 2) {
-        const placesElement =
-          homesFlexContainer.querySelectorAll('.places__element')[index];
-        placesElement.classList.add('hidden');
-      }
-      if (index >= 4) {
-        const placesElement =
-          homesFlexContainer.querySelectorAll('.places__element')[index];
-        placesElement.classList.add('temporarily-hidden');
-      }
-    });
+    formHomesElements(data_);
+    addListenersToHomesElements();
   })
   .catch((err) => {
     console.log(err.message);
   });
+
+
 
 const filterMembers = ['adult', 'child', 'room'];
 const madeChildrenAgeDiv = () => {
