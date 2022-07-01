@@ -56,9 +56,6 @@ const addListenersToHomesElements = () => {
 
 fetch('https://fe-student-api.herokuapp.com/api/hotels/popular')
   .then((response) => {
-    if (!response.ok) {
-      throw new Error(`${response.status}, ${response.statusText}`);
-    }
     return response.json();
   })
   .then((data_) => {
@@ -68,10 +65,6 @@ fetch('https://fe-student-api.herokuapp.com/api/hotels/popular')
   .catch((err) => {
     console.log(err.message);
   });
-
-
-
-
 
 const filterMembers = ['adult', 'child', 'room'];
 const madeChildrenAgeDiv = () => {
@@ -341,8 +334,6 @@ document.querySelectorAll('.cal_day-num-d').forEach((element, index) => {
     }
   });
 });
-
-
 
 document.getElementById('cal_current-month-name-adaptive_1').innerText = `${
   months[today.getMonth()]
