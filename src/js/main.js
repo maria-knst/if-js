@@ -1,5 +1,33 @@
 import { daysOfWeek, months, calendarMonth } from './dates_work.js';
 
+const getReadingInput = (element) => {
+  if (element.parentElement.classList.contains('top-search-inputs')) {
+    return document.getElementById('destination');
+  } else {
+    return document.getElementById('destination_adaptive');
+  }
+};
+
+document.querySelectorAll('.top-search-button_clicked').forEach((element) => {
+  element.addEventListener('click', (event) => {
+    event.preventDefault();
+    const readingInput = getReadingInput(element);
+    const searchValue = readingInput.value;
+    fetch(
+      `https://fe-student-api.herokuapp.com/api/hotels?search=${searchValue}`,
+    )
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  });
+});
+
 const homesContainer = document.querySelector('.homes__container');
 const homesFlexContainer = homesContainer.querySelector(
   '.places__flex-container',
