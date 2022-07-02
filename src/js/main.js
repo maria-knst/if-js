@@ -8,30 +8,113 @@ const getReadingInput = (element) => {
   }
 };
 
+const availHotelsFlexContainer = document.getElementById(
+  'available-hotels__flex-container',
+);
+const homesContainer = document.querySelector('.homes__container');
+const homesFlexContainer = homesContainer.querySelector(
+  '.places__flex-container',
+);
+
+const addListenersToHomesElements = (selector) => {
+  const container =
+    selector === 'homes' ? homesFlexContainer : availHotelsFlexContainer;
+  container.querySelectorAll('.places__image').forEach((element) => {
+    element.addEventListener('mouseenter', (event) => {
+      event.target.parentElement
+        .querySelector('.places__home-description')
+        .classList.toggle('places__home-description_hovered');
+    });
+  });
+  container.querySelectorAll('.places__image').forEach((element) => {
+    element.addEventListener('mouseout', (event) => {
+      event.target.parentElement
+        .querySelector('.places__home-description')
+        .classList.toggle('places__home-description_hovered');
+    });
+  });
+};
+
+const formAvailableHotelsElements = (data) => {
+  availHotelsFlexContainer.innerHTML = '<button class="places__arrow" id="places-avail-hotels__arrow-prev">\n' +
+    '              <img src="./src/images/svg/Arrow.svg" alt="->" />\n' +
+    '            </button>\n' +
+    '            <button class="places__arrow" id="places-avail-hotels__arrow-next">\n' +
+    '              <img src="./src/images/svg/Arrow.svg" alt="->" />\n' +
+    '            </button>';
+  data.forEach((element, index) => {
+    availHotelsFlexContainer.innerHTML += `
+      <div class="places__element col-3">
+        <img
+                src=${element.imageUrl}
+                id="avai-hotels_${index + 1}"
+                class="places__image"
+                alt="available-hotels-img-${index + 1}"
+        />
+        <div class="places__home-description">
+            <p class="places__label">${element.name}</p>
+            <p class="homes__destination">${element.city}, ${element.country}
+            </p>
+         </div>
+
+          </div>
+    `;
+    if (index >= 2) {
+      const placesElement =
+        availHotelsFlexContainer.querySelectorAll('.places__element')[index];
+      placesElement.classList.add('hidden');
+    }
+    if (index >= 4) {
+      const placesElement =
+        availHotelsFlexContainer.querySelectorAll('.places__element')[index];
+      placesElement.classList.add('temporarily-hidden');
+    }
+  });
+};
+
+const toggleAvailableHotelsContainer = (data) => {
+  if(data === null || data.length === 0){
+    document
+      .querySelector('.available-hotels')
+      .classList.add('available-hotels__hidden__');
+  }else {
+    document
+      .querySelector('.available-hotels')
+      .classList.remove('available-hotels__hidden__');
+  }
+
+};
+
+const makeRequest = (searchValue) => {
+  if(searchValue === ''){
+    toggleAvailableHotelsContainer(null);
+    return;
+  }
+  fetch(
+    `https://fe-student-api.herokuapp.com/api/hotels?search=${searchValue}`,
+  )
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data);
+      formAvailableHotelsElements(data);
+      toggleAvailableHotelsContainer(data);
+      addListenersToHomesElements('avail-hotels');
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
+
 document.querySelectorAll('.top-search-button_clicked').forEach((element) => {
   element.addEventListener('click', (event) => {
     event.preventDefault();
     const readingInput = getReadingInput(element);
     const searchValue = readingInput.value;
-    fetch(
-      `https://fe-student-api.herokuapp.com/api/hotels?search=${searchValue}`,
-    )
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
+    makeRequest(searchValue);
   });
 });
-
-const homesContainer = document.querySelector('.homes__container');
-const homesFlexContainer = homesContainer.querySelector(
-  '.places__flex-container',
-);
 
 const formHomesElements = (data_) => {
   data_.forEach((element, index) => {
@@ -65,30 +148,13 @@ const formHomesElements = (data_) => {
   });
 };
 
-const addListenersToHomesElements = () => {
-  homesFlexContainer.querySelectorAll('.places__image').forEach((element) => {
-    element.addEventListener('mouseenter', (event) => {
-      event.target.parentElement
-        .querySelector('.places__home-description')
-        .classList.toggle('places__home-description_hovered');
-    });
-  });
-  homesFlexContainer.querySelectorAll('.places__image').forEach((element) => {
-    element.addEventListener('mouseout', (event) => {
-      event.target.parentElement
-        .querySelector('.places__home-description')
-        .classList.toggle('places__home-description_hovered');
-    });
-  });
-};
-
 fetch('https://fe-student-api.herokuapp.com/api/hotels/popular')
   .then((response) => {
     return response.json();
   })
   .then((data_) => {
     formHomesElements(data_);
-    addListenersToHomesElements();
+    addListenersToHomesElements('homes');
   })
   .catch((err) => {
     console.log(err.message);
