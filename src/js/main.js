@@ -36,7 +36,8 @@ const addListenersToHomesElements = (selector) => {
 };
 
 const formAvailableHotelsElements = (data) => {
-  availHotelsFlexContainer.innerHTML = '<button class="places__arrow" id="places-avail-hotels__arrow-prev">\n' +
+  availHotelsFlexContainer.innerHTML =
+    '<button class="places__arrow" id="places-avail-hotels__arrow-prev">\n' +
     '              <img src="./src/images/svg/Arrow.svg" alt="->" />\n' +
     '            </button>\n' +
     '            <button class="places__arrow" id="places-avail-hotels__arrow-next">\n' +
@@ -73,31 +74,27 @@ const formAvailableHotelsElements = (data) => {
 };
 
 const toggleAvailableHotelsContainer = (data) => {
-  if(data === null || data.length === 0){
+  if (data === null || data.length === 0) {
     document
       .querySelector('.available-hotels')
       .classList.add('available-hotels__hidden__');
-  }else {
+  } else {
     document
       .querySelector('.available-hotels')
       .classList.remove('available-hotels__hidden__');
   }
-
 };
 
 const makeRequest = (searchValue) => {
-  if(searchValue === ''){
+  if (searchValue === '') {
     toggleAvailableHotelsContainer(null);
     return;
   }
-  fetch(
-    `https://fe-student-api.herokuapp.com/api/hotels?search=${searchValue}`,
-  )
+  fetch(`https://fe-student-api.herokuapp.com/api/hotels?search=${searchValue}`)
     .then((response) => {
       return response.json();
     })
     .then((data) => {
-      console.log(data);
       formAvailableHotelsElements(data);
       toggleAvailableHotelsContainer(data);
       addListenersToHomesElements('avail-hotels');
