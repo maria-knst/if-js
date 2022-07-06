@@ -173,7 +173,9 @@
                 ></div>
               </div>
             </div>
-            <button class="top-search-button">Search</button>
+            <button class="top-search-button top-search-button_clicked">
+              Search
+            </button>
           </div>
         </form>
 
@@ -181,7 +183,8 @@
           <div class="top-frame-element top__destination">
             <img src="./src/images/svg/Find.svg" alt="Find" />
             <input
-              class="top__destination-input medium-font"
+              id="destination_adaptive"
+              class="top__destination-input medium-font destination-input"
               type="text"
               value="Your destination or hotel name"
             />
@@ -273,7 +276,11 @@
               />
             </div>
           </div>
-          <button class="top-frame-element top__search">Search</button>
+          <button
+            class="top-frame-element top__search top-search-button_clicked"
+          >
+            Search
+          </button>
         </form>
 
         <div class="top-apps">
@@ -289,6 +296,18 @@
         </div>
       </div>
     </header>
+
+    <section class="available-hotels available-hotels__hidden__">
+      <div class="container col-12" id="available-hotels__container">
+        <div class="title">
+          <h2 class="title-text">Available hostels</h2>
+        </div>
+        <div
+          class="places__flex-container"
+          id="available-hotels__flex-container"
+        ></div>
+      </div>
+    </section>
 
     <section class="advantages">
       <div class="container col-12">
@@ -337,8 +356,11 @@
           <h2 class="title-text">Homes guests loves</h2>
         </div>
 
-        <div class="places__flex-container col-12">
-          <button class="places__arrow">
+        <div class="places__flex-container col-12" id="homes_flex-container">
+          <button class="places__arrow" id="places__arrow-prev">
+            <img src="./src/images/svg/Arrow.svg" alt="->" />
+          </button>
+          <button class="places__arrow" id="places__arrow-next">
             <img src="./src/images/svg/Arrow.svg" alt="->" />
           </button>
         </div>
@@ -703,7 +725,6 @@
     </footer>
 
     <script type="module" src="./src/js/main.js"></script>
-    <script type="module" src="/src/js/data_hostels.js"></script>
     <script type="module" src="/src/js/dates_work.js"></script>
   </body>
 </html>

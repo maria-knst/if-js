@@ -795,10 +795,150 @@ $calendar-width: 100%;
   opacity: 0.8;
 }
 
+//_________________AVAILABLE-HOSTELS___________________
+
+@mixin places-container_mixin {
+  .places__flex-container {
+    .homes__destination {
+      color: $color_grey;
+      margin-bottom: 8px;
+    }
+    .places__image {
+      transition: all 0.5s linear;
+      width: 100%;
+      height: 70%;
+      object-fit: cover;
+      opacity: 0.85;
+    }
+    .temporarily-hidden {
+      display: none;
+    }
+  }
+}
+
+.places__flex-container {
+  display: flex;
+  gap: 1.5%;
+  margin: 105px auto 0;
+  position: relative;
+
+  .places__element {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .places__home-description {
+      background: $color_light-grey;
+      position: relative;
+      top: -28%;
+      width: 100%;
+      transition: all 0.5s;
+    }
+    .places__home-description_hovered {
+      top: 0;
+    }
+    .places__label {
+      color: $color_light-blue;
+      margin: 24px 0;
+      font-size: 24px;
+    }
+    .places__image {
+      width: 100%;
+    }
+    .places__image:hover {
+      opacity: 1;
+    }
+  }
+
+  .places__arrow {
+    display: block;
+    position: absolute;
+    top: 30%;
+    z-index: 4;
+    left: calc(100% - 25px);
+    transform: translate(0%, -50%);
+    max-width: 40px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: $color_white;
+    box-shadow: 1px 5px 5px $color_medium-grey;
+    transition: box-shadow 0.2s;
+  }
+  .places__arrow:active {
+    box-shadow: 1px 1px 1px $color_medium-grey;
+  }
+
+  .places__arrow img {
+    width: 40%;
+    height: 40%;
+  }
+
+  #places__arrow-prev,
+  #places-avail-hotels__arrow-prev {
+    display: block;
+    position: absolute;
+    top: 30%;
+    z-index: 4;
+    left: calc(-25px);
+    img {
+      transform: rotate(180deg);
+    }
+  }
+
+  @include _840 {
+    flex-wrap: wrap;
+    justify-content: space-around;
+    .places__element {
+      width: 48%;
+    }
+    .hidden {
+      display: none;
+    }
+  }
+
+  @include _600 {
+    margin: 35px auto 0;
+  }
+
+  @include _520 {
+    .places__arrow {
+      width: 28px;
+      height: 28px;
+      top: 30%;
+      left: calc(100% - 20px);
+    }
+  }
+
+  @include _362 {
+    font-size: 12px;
+
+    .places__label {
+      padding: 4px 0;
+      font-size: 12px;
+    }
+    .places__arrow {
+      top: 40%;
+    }
+  }
+}
+
+.available-hotels {
+  order: 2;
+  padding: 120px 0;
+  background: $color_light-grey;
+  @include places-container_mixin;
+}
+
+.available-hotels__hidden__ {
+  display: none;
+}
+
 //_________________ADVANTAGES___________________________
 .advantages {
   color: $color_dark-grey;
-  order: 2;
+  order: 3;
   font-size: 24px;
   padding: 120px 0;
 
@@ -860,99 +1000,14 @@ $calendar-width: 100%;
   }
 }
 
-.places__flex-container {
-  display: flex;
-  gap: 1.5%;
-  margin: 105px auto 0;
-  position: relative;
-
-  .places__label {
-    color: $color_light-blue;
-    padding: 24px 0;
-    font-size: 24px;
-  }
-
-  .places__image {
-    width: 100%;
-    height: auto;
-  }
-  .places__arrow {
-    display: block;
-    position: absolute;
-    top: 40%;
-    z-index: 4;
-    left: calc(100% - 25px);
-    transform: translate(0%, -50%);
-    max-width: 40px;
-    width: 40px;
-    height: 40px;
-    border: none;
-    border-radius: 50%;
-    background: $color_white;
-    box-shadow: 1px 5px 5px $color_medium-grey;
-    transition: box-shadow 0.2s;
-  }
-  .places__arrow:active {
-    box-shadow: 1px 1px 1px $color_medium-grey;
-  }
-
-  .places__arrow img {
-    width: 40%;
-    height: 40%;
-  }
-
-  @include _840 {
-    flex-wrap: wrap;
-    justify-content: space-around;
-    .places__element {
-      width: 48%;
-    }
-    .hidden {
-      display: none;
-    }
-  }
-
-  @include _600 {
-    margin: 35px auto 0;
-  }
-
-  @include _520 {
-    .places__arrow {
-      width: 28px;
-      height: 28px;
-      top: 30%;
-      left: calc(100% - 20px);
-    }
-  }
-
-  @include _362 {
-    font-size: 12px;
-
-    .places__label {
-      padding: 4px 0;
-      font-size: 12px;
-    }
-    .places__arrow {
-      top: 40%;
-    }
-  }
-}
-
 //_____________________HOMES_____________________________
 .homes {
   padding: 120px 0;
-  order: 3;
+  order: 4;
   background: $color_light-grey;
   font-family: $main_font-family;
 
-  .places__flex-container {
-    .homes__destination {
-      color: $color_grey;
-    }
-    .temporarily-hidden {
-      display: none;
-    }
-  }
+  @include places-container_mixin;
 
   @include _520 {
     padding: 40px 0;
@@ -980,7 +1035,7 @@ $calendar-width: 100%;
 //_________________BEST_DESTINATIONS_________________________
 .best-destinations {
   padding: 120px 0;
-  order: 4;
+  order: 5;
 
   .best-dest__flex-container {
     margin-top: 65px;
@@ -1106,7 +1161,7 @@ $calendar-width: 100%;
 
 //_________________SIGN_UP____________________________
 .sign-up {
-  order: 5;
+  order: 6;
   .sign-up__container {
     display: flex;
     justify-content: space-between;
@@ -1262,7 +1317,7 @@ $calendar-width: 100%;
 
 //________________GUESTS_REVIEWS___________________________
 .reviews {
-  order: 6;
+  order: 7;
   padding: 120px 0;
   font-family: $main_font-family;
 
@@ -1528,7 +1583,7 @@ $calendar-width: 100%;
   font-size: 20px;
   line-height: 23px;
   font-style: normal;
-  order: 7;
+  order: 8;
   .foot-logo-respons {
     display: none;
   }

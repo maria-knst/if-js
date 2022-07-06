@@ -1,39 +1,161 @@
-import data from './data_hostels.js';
 import { daysOfWeek, months, calendarMonth } from './dates_work.js';
 
+const getReadingInput = (element) => {
+  if (element.parentElement.classList.contains('top-search-inputs')) {
+    return document.getElementById('destination');
+  } else {
+    return document.getElementById('destination_adaptive');
+  }
+};
+
+const availHotelsFlexContainer = document.getElementById(
+  'available-hotels__flex-container',
+);
 const homesContainer = document.querySelector('.homes__container');
 const homesFlexContainer = homesContainer.querySelector(
   '.places__flex-container',
 );
 
-data.forEach((element, index) => {
-  homesFlexContainer.innerHTML += `
+const addListenersToHomesElements = (selector) => {
+  const container =
+    selector === 'homes' ? homesFlexContainer : availHotelsFlexContainer;
+  container.querySelectorAll('.places__image').forEach((element) => {
+    element.addEventListener('mouseenter', (event) => {
+      event.target.parentElement
+        .querySelector('.places__home-description')
+        .classList.toggle('places__home-description_hovered');
+    });
+  });
+  container.querySelectorAll('.places__image').forEach((element) => {
+    element.addEventListener('mouseout', (event) => {
+      event.target.parentElement
+        .querySelector('.places__home-description')
+        .classList.toggle('places__home-description_hovered');
+    });
+  });
+};
+
+const formAvailableHotelsElements = (data) => {
+  availHotelsFlexContainer.innerHTML =
+    '<button class="places__arrow" id="places-avail-hotels__arrow-prev">\n' +
+    '              <img src="./src/images/svg/Arrow.svg" alt="->" />\n' +
+    '            </button>\n' +
+    '            <button class="places__arrow" id="places-avail-hotels__arrow-next">\n' +
+    '              <img src="./src/images/svg/Arrow.svg" alt="->" />\n' +
+    '            </button>';
+  data.forEach((element, index) => {
+    availHotelsFlexContainer.innerHTML += `
+      <div class="places__element col-3">
+        <img
+                src=${element.imageUrl}
+                id="avai-hotels_${index + 1}"
+                class="places__image"
+                alt="available-hotels-img-${index + 1}"
+        />
+        <div class="places__home-description">
+            <p class="places__label">${element.name}</p>
+            <p class="homes__destination">${element.city}, ${element.country}
+            </p>
+         </div>
+
+          </div>
+    `;
+    if (index >= 2) {
+      const placesElement =
+        availHotelsFlexContainer.querySelectorAll('.places__element')[index];
+      placesElement.classList.add('hidden');
+    }
+    if (index >= 4) {
+      const placesElement =
+        availHotelsFlexContainer.querySelectorAll('.places__element')[index];
+      placesElement.classList.add('temporarily-hidden');
+    }
+  });
+};
+
+const toggleAvailableHotelsContainer = (data) => {
+  if (data === null || data.length === 0) {
+    document
+      .querySelector('.available-hotels')
+      .classList.add('available-hotels__hidden__');
+  } else {
+    document
+      .querySelector('.available-hotels')
+      .classList.remove('available-hotels__hidden__');
+  }
+};
+
+const makeRequest = (searchValue) => {
+  if (searchValue === '') {
+    toggleAvailableHotelsContainer(null);
+    return;
+  }
+  fetch(`https://fe-student-api.herokuapp.com/api/hotels?search=${searchValue}`)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      formAvailableHotelsElements(data);
+      toggleAvailableHotelsContainer(data);
+      addListenersToHomesElements('avail-hotels');
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
+
+document.querySelectorAll('.top-search-button_clicked').forEach((element) => {
+  element.addEventListener('click', (event) => {
+    event.preventDefault();
+    const readingInput = getReadingInput(element);
+    const searchValue = readingInput.value;
+    makeRequest(searchValue);
+  });
+});
+
+const formHomesElements = (data_) => {
+  data_.forEach((element, index) => {
+    homesFlexContainer.innerHTML += `
     <div class="places__element col-3">
-            <figure>
-              <img
+        <img
                 src=${element.imageUrl}
                 id="homes_${index + 1}"
                 class="places__image"
                 alt="home-img-${index + 1}"
-              />
-              <figcaption class="places__label">${element.name}</figcaption>
-            </figure>
-            <p class="homes__destination">${element.city}, ${
-    element.country
-  }</p>
+        />
+        <div class="places__home-description">
+            <p class="places__label">${element.name}</p>
+            <p class="homes__destination">${element.city}, ${element.country}
+            </p>
+         </div>
+
           </div>
   `;
-  if (index >= 2) {
-    const placesElement =
-      homesFlexContainer.querySelectorAll('.places__element')[index];
-    placesElement.classList.add('hidden');
-  }
-  if (index >= 4) {
-    const placesElement =
-      homesFlexContainer.querySelectorAll('.places__element')[index];
-    placesElement.classList.add('temporarily-hidden');
-  }
-});
+
+    if (index >= 2) {
+      const placesElement =
+        homesFlexContainer.querySelectorAll('.places__element')[index];
+      placesElement.classList.add('hidden');
+    }
+    if (index >= 4) {
+      const placesElement =
+        homesFlexContainer.querySelectorAll('.places__element')[index];
+      placesElement.classList.add('temporarily-hidden');
+    }
+  });
+};
+
+fetch('https://fe-student-api.herokuapp.com/api/hotels/popular')
+  .then((response) => {
+    return response.json();
+  })
+  .then((data_) => {
+    formHomesElements(data_);
+    addListenersToHomesElements('homes');
+  })
+  .catch((err) => {
+    console.log(err.message);
+  });
 
 const filterMembers = ['adult', 'child', 'room'];
 const madeChildrenAgeDiv = () => {
@@ -151,11 +273,11 @@ document.querySelectorAll('.cal_grid-wrapper-d').forEach((element) => {
   });
   calendarMonth.forEach((item, index) => {
     item.forEach((innerItem, innerIndex) => {
-      innerItem.isCurrentMonth === true
+      innerItem.isCurrentMonth
         ? (element.innerHTML += `<div class="cal_day cal_day-num cal_day-num-d">${innerItem.daysInMonth}</div>`)
         : (element.innerHTML += `<div class="cal_day cal_day-num cal_day-num-d cal_not-current-month">${innerItem.daysInMonth}</div>`);
 
-      if (innerItem.currentDay === true) {
+      if (innerItem.currentDay) {
         findToday(index, innerIndex);
       }
     });
@@ -254,7 +376,7 @@ document.querySelectorAll('.cal_day-num-d').forEach((element, index) => {
   element.addEventListener('click', (event) => {
     event.preventDefault();
     if (!event.target.classList.contains('cal_past-day')) {
-      if (startDate === false) {
+      if (!startDate) {
         event.target.classList.toggle('cal_clicked-day');
         if (event.target === endDate) {
           //Check if choosing cell is already clicked
@@ -264,7 +386,7 @@ document.querySelectorAll('.cal_day-num-d').forEach((element, index) => {
           startDate.index_ = index; //This is index in big matrix which contains current month and next month
           madePeriodOfTraveling(startDate, endDate);
         }
-      } else if (endDate === false) {
+      } else if (!endDate) {
         event.target.classList.toggle('cal_clicked-day');
         if (event.target === startDate) {
           //Check if choosing cell is already clicked
