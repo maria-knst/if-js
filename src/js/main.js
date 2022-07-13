@@ -90,8 +90,8 @@ const makeRequest = (searchValue) => {
     toggleAvailableHotelsContainer(null);
     return;
   }
-  if(sessionStorage.getItem(`${searchValue}`)){
-    const data_ = JSON.parse(sessionStorage.getItem(`${searchValue}`));
+  if(sessionStorage.getItem(searchValue)){
+    const data_ = JSON.parse(sessionStorage.getItem(searchValue));
     formAvailableHotelsElements(data_);
     toggleAvailableHotelsContainer(data_);
     addListenersToHomesElements('avail-hotels');
@@ -102,7 +102,7 @@ const makeRequest = (searchValue) => {
       return response.json();
     })
     .then((data) => {
-      sessionStorage.setItem(`${searchValue}`, JSON.stringify(data));
+      sessionStorage.setItem(searchValue, JSON.stringify(data));
       formAvailableHotelsElements(data);
       toggleAvailableHotelsContainer(data);
       addListenersToHomesElements('avail-hotels');

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Form</title>
+    <link rel="stylesheet" href="src/css/style_les15.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="header__title">Working With Files</h1>
+    </header>
+
+    <section class="form_section">
+      <form class="form" id="formEl" enctype="multipart/form-data">
+        <label for="name" class="form__item form__label">Name:</label>
+        <input
+          type="text"
+          id="name"
+          class="form__item form__input"
+          name="name"
+          placeholder="Name"
+        />
+        <label for="surname" class="form__item form__label">Surname:</label>
+        <input
+          type="text"
+          id="surname"
+          class="form__item form__input"
+          name="surname"
+          placeholder="Surname"
+        />
+        <label for="photo" class="form__item form__label">Your photo:</label>
+        <input
+          type="file"
+          id="photo"
+          class="form__item form__input"
+          name="file"
+          placeholder="File"
+          accept=".jpg, .jpeg, .png"
+          hidden
+        />
+        <div class="form__photo-div" id="form__photo-div">
+          <h3>Chick to add image</h3>
+        </div>
+        <button type="submit" class="form__button" id="send_button">
+          Send
+        </button>
+      </form>
+    </section>
+
+    <footer class="footer"></footer>
+
+    <script type="module" src="./src/js/form_les15.js"></script>
+  </body>
+</html>
