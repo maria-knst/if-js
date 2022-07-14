@@ -8,6 +8,28 @@ const getReadingInput = (element) => {
   }
 };
 
+const getExtraOptionsInput = (element) => {
+  let [adults, children, childrenAge, rooms] = [];
+  if (element.parentElement.classList.contains('top-search-inputs')) {
+    adults = document.getElementById('adult-span').innerText;
+    children = document.getElementById('child-span').innerText;
+    if (children !== '0') {
+      childrenAge = Array.from(document.querySelectorAll('#child')).map(
+        (item) => {
+          return item.value;
+        },
+      );
+    }
+    rooms = document.getElementById('room-span').innerText;
+  } else {
+    adults = document.getElementById('top-1').value;
+    children = document.getElementById('top-2').value;
+    rooms = document.getElementById('top-3').value;
+    childrenAge = [];
+  }
+  return [adults, children, childrenAge, rooms];
+};
+
 const availHotelsFlexContainer = document.getElementById(
   'available-hotels__flex-container',
 );
@@ -85,27 +107,30 @@ const toggleAvailableHotelsContainer = (data) => {
   }
 };
 
-const makeRequest = (searchValue) => {
+const makeRequest = (searchValue, extraOptions) => {
   if (searchValue === '') {
     toggleAvailableHotelsContainer(null);
     return;
   }
-  if(sessionStorage.getItem(searchValue)){
+  if (sessionStorage.getItem(searchValue)) {
     const data_ = JSON.parse(sessionStorage.getItem(searchValue));
     formAvailableHotelsElements(data_);
     toggleAvailableHotelsContainer(data_);
     addListenersToHomesElements('avail-hotels');
     return;
   }
-  fetch(`https://fe-student-api.herokuapp.com/api/hotels?search=${searchValue}`)
+  const queryParameters = `search=${searchValue}&adults=${extraOptions[0]}&children=${extraOptions[2]}&rooms=${extraOptions[3]}`;
+  fetch(`https://fe-student-api.herokuapp.com/api/hotels?${queryParameters}`)
     .then((response) => {
       return response.json();
     })
     .then((data) => {
+      console.log(queryParameters);
       sessionStorage.setItem(searchValue, JSON.stringify(data));
       formAvailableHotelsElements(data);
       toggleAvailableHotelsContainer(data);
       addListenersToHomesElements('avail-hotels');
+      console.log(queryParameters);
     })
     .catch((err) => {
       console.log(err.message);
@@ -116,10 +141,25 @@ document.querySelectorAll('.top-search-button_clicked').forEach((element) => {
   element.addEventListener('click', (event) => {
     event.preventDefault();
     const readingInput = getReadingInput(element);
+    const extraOptions = getExtraOptionsInput(element);
     const searchValue = readingInput.value;
-    makeRequest(searchValue);
+    makeRequest(searchValue, extraOptions);
   });
 });
+
+const bubbleSort = (data) => {
+  for (let i = 0; i < data.length - 1; i++) {
+    for (let j = 0; j < data.length - 1 - i; j++) {
+      if (data[j].name > data[j + 1].name) {
+        const tmp = data[j];
+        data[j] = data[j + 1];
+        data[j + 1] = tmp;
+      }
+    }
+  }
+
+  return data;
+};
 
 const formHomesElements = (data_) => {
   data_.forEach((element, index) => {
@@ -158,6 +198,7 @@ fetch('https://fe-student-api.herokuapp.com/api/hotels/popular')
     return response.json();
   })
   .then((data_) => {
+    bubbleSort(data_);
     formHomesElements(data_);
     addListenersToHomesElements('homes');
   })
