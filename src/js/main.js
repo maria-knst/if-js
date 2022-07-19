@@ -9,25 +9,29 @@ const getReadingInput = (element) => {
 };
 
 const getExtraOptionsInput = (element) => {
-  let [adults, children, childrenAge, rooms] = [];
+  const peopleCount = {
+    adults: 0,
+    children: 0,
+    childrenAge: [],
+    rooms: 0,
+  };
   if (element.parentElement.classList.contains('top-search-inputs')) {
-    adults = document.getElementById('adult-span').innerText;
-    children = document.getElementById('child-span').innerText;
-    if (children !== '0') {
-      childrenAge = Array.from(document.querySelectorAll('#child')).map(
-        (item) => {
-          return item.value;
-        },
-      );
+    peopleCount.adults = document.getElementById('adult-span').innerText;
+    peopleCount.children = document.getElementById('child-span').innerText;
+    if (peopleCount.children !== '0') {
+      peopleCount.childrenAge = Array.from(
+        document.querySelectorAll('#child'),
+      ).map((item) => {
+        return item.value;
+      });
     }
-    rooms = document.getElementById('room-span').innerText;
+    peopleCount.rooms = document.getElementById('room-span').innerText;
   } else {
-    adults = document.getElementById('top-1').value;
-    children = document.getElementById('top-2').value;
-    rooms = document.getElementById('top-3').value;
-    childrenAge = [];
+    peopleCount.adults = document.getElementById('top-1').value;
+    peopleCount.children = document.getElementById('top-2').value;
+    peopleCount.rooms = document.getElementById('top-3').value;
   }
-  return [adults, children, childrenAge, rooms];
+  return peopleCount;
 };
 
 const availHotelsFlexContainer = document.getElementById(
@@ -119,18 +123,17 @@ const makeRequest = (searchValue, extraOptions) => {
     addListenersToHomesElements('avail-hotels');
     return;
   }
-  const queryParameters = `search=${searchValue}&adults=${extraOptions[0]}&children=${extraOptions[2]}&rooms=${extraOptions[3]}`;
+
+  const queryParameters = `search=${searchValue}&adults=${extraOptions.adults}&children=${extraOptions.childrenAge}&rooms=${extraOptions.rooms}`;
   fetch(`https://fe-student-api.herokuapp.com/api/hotels?${queryParameters}`)
     .then((response) => {
       return response.json();
     })
     .then((data) => {
-      console.log(queryParameters);
       sessionStorage.setItem(searchValue, JSON.stringify(data));
       formAvailableHotelsElements(data);
       toggleAvailableHotelsContainer(data);
       addListenersToHomesElements('avail-hotels');
-      console.log(queryParameters);
     })
     .catch((err) => {
       console.log(err.message);
