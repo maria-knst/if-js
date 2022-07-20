@@ -62,13 +62,12 @@ const addListenersToHomesElements = (selector) => {
 };
 
 const formAvailableHotelsElements = (data) => {
-  availHotelsFlexContainer.innerHTML =
-    '<button class="places__arrow" id="places-avail-hotels__arrow-prev">\n' +
-    '              <img src="./src/images/svg/Arrow.svg" alt="->" />\n' +
-    '            </button>\n' +
-    '            <button class="places__arrow" id="places-avail-hotels__arrow-next">\n' +
-    '              <img src="./src/images/svg/Arrow.svg" alt="->" />\n' +
-    '            </button>';
+  availHotelsFlexContainer.innerHTML = `<button class="places__arrow" id="places-avail-hotels__arrow-prev">
+                 <img src="./src/images/svg/Arrow.svg" alt="->" />
+                 </button>
+                 <button class="places__arrow" id="places-avail-hotels__arrow-next">
+                 <img src="./src/images/svg/Arrow.svg" alt="->" />
+                 </button>`;
   data.forEach((element, index) => {
     availHotelsFlexContainer.innerHTML += `
       <div class="places__element col-3">
