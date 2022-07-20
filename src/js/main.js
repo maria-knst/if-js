@@ -8,6 +8,32 @@ const getReadingInput = (element) => {
   }
 };
 
+const getExtraOptionsInput = (element) => {
+  const peopleCount = {
+    adults: 0,
+    children: 0,
+    childrenAge: [],
+    rooms: 0,
+  };
+  if (element.parentElement.classList.contains('top-search-inputs')) {
+    peopleCount.adults = document.getElementById('adult-span').innerText;
+    peopleCount.children = document.getElementById('child-span').innerText;
+    if (peopleCount.children !== '0') {
+      peopleCount.childrenAge = Array.from(
+        document.querySelectorAll('#child'),
+      ).map((item) => {
+        return item.value;
+      });
+    }
+    peopleCount.rooms = document.getElementById('room-span').innerText;
+  } else {
+    peopleCount.adults = document.getElementById('top-1').value;
+    peopleCount.children = document.getElementById('top-2').value;
+    peopleCount.rooms = document.getElementById('top-3').value;
+  }
+  return peopleCount;
+};
+
 const availHotelsFlexContainer = document.getElementById(
   'available-hotels__flex-container',
 );
@@ -36,13 +62,12 @@ const addListenersToHomesElements = (selector) => {
 };
 
 const formAvailableHotelsElements = (data) => {
-  availHotelsFlexContainer.innerHTML =
-    '<button class="places__arrow" id="places-avail-hotels__arrow-prev">\n' +
-    '              <img src="./src/images/svg/Arrow.svg" alt="->" />\n' +
-    '            </button>\n' +
-    '            <button class="places__arrow" id="places-avail-hotels__arrow-next">\n' +
-    '              <img src="./src/images/svg/Arrow.svg" alt="->" />\n' +
-    '            </button>';
+  availHotelsFlexContainer.innerHTML = `<button class="places__arrow" id="places-avail-hotels__arrow-prev">
+                 <img src="./src/images/svg/Arrow.svg" alt="->" />
+                 </button>
+                 <button class="places__arrow" id="places-avail-hotels__arrow-next">
+                 <img src="./src/images/svg/Arrow.svg" alt="->" />
+                 </button>`;
   data.forEach((element, index) => {
     availHotelsFlexContainer.innerHTML += `
       <div class="places__element col-3">
@@ -85,19 +110,21 @@ const toggleAvailableHotelsContainer = (data) => {
   }
 };
 
-const makeRequest = (searchValue) => {
+const makeRequest = (searchValue, extraOptions) => {
   if (searchValue === '') {
     toggleAvailableHotelsContainer(null);
     return;
   }
-  if(sessionStorage.getItem(searchValue)){
+  if (sessionStorage.getItem(searchValue)) {
     const data_ = JSON.parse(sessionStorage.getItem(searchValue));
     formAvailableHotelsElements(data_);
     toggleAvailableHotelsContainer(data_);
     addListenersToHomesElements('avail-hotels');
     return;
   }
-  fetch(`https://fe-student-api.herokuapp.com/api/hotels?search=${searchValue}`)
+
+  const queryParameters = `search=${searchValue}&adults=${extraOptions.adults}&children=${extraOptions.childrenAge}&rooms=${extraOptions.rooms}`;
+  fetch(`https://fe-student-api.herokuapp.com/api/hotels?${queryParameters}`)
     .then((response) => {
       return response.json();
     })
@@ -116,10 +143,25 @@ document.querySelectorAll('.top-search-button_clicked').forEach((element) => {
   element.addEventListener('click', (event) => {
     event.preventDefault();
     const readingInput = getReadingInput(element);
+    const extraOptions = getExtraOptionsInput(element);
     const searchValue = readingInput.value;
-    makeRequest(searchValue);
+    makeRequest(searchValue, extraOptions);
   });
 });
+
+const bubbleSort = (data) => {
+  for (let i = 0; i < data.length - 1; i++) {
+    for (let j = 0; j < data.length - 1 - i; j++) {
+      if (data[j].name > data[j + 1].name) {
+        const tmp = data[j];
+        data[j] = data[j + 1];
+        data[j + 1] = tmp;
+      }
+    }
+  }
+
+  return data;
+};
 
 const formHomesElements = (data_) => {
   data_.forEach((element, index) => {
@@ -158,6 +200,7 @@ fetch('https://fe-student-api.herokuapp.com/api/hotels/popular')
     return response.json();
   })
   .then((data_) => {
+    bubbleSort(data_);
     formHomesElements(data_);
     addListenersToHomesElements('homes');
   })
