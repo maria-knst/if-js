@@ -328,13 +328,20 @@ $calendar-width: 100%;
   }
 
   .top-search-inputs input {
-    border: none;
     font-size: 18px;
   }
 
   .destination {
     width: 38%;
     padding-left: 15px;
+    border: 3px solid $color_white;
+    border-radius: 8px;
+  }
+  .destination:hover{
+    border: 3px solid $color_tawny;
+  }
+  .destination:focus{
+    border: 3px solid $color_tawny;
   }
 
   .date {

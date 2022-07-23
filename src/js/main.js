@@ -2,10 +2,14 @@ import {
   availHotelsFlexContainer,
   formAvailableHotelsElements,
   toggleAvailableHotelsContainer,
-} from "./available_hotels.js";
-import { bubbleSort, formHomesElements, homesFlexContainer } from "./homes_guests_loves.js";
-import { today } from "./top-form_calendar.js";
-import { getMonthIndexFrom } from "./dates_work.js";
+} from './available_hotels.js';
+import {
+  bubbleSort,
+  formHomesElements,
+  homesFlexContainer,
+} from './homes_guests_loves.js';
+import { today } from './top-form_calendar.js';
+import { getMonthIndexFrom } from './dates_work.js';
 
 const getReadingInput = (element) => {
   if (element.parentElement.classList.contains('top-search-inputs')) {
