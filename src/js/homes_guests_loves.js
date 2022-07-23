@@ -48,4 +48,4 @@ const formHomesElements = (data_) => {
   });
 };
 
-export {bubbleSort, formHomesElements};
+export { bubbleSort, formHomesElements };

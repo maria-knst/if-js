@@ -51,4 +51,4 @@ const toggleAvailableHotelsContainer = (data) => {
   }
 };
 
-export {formAvailableHotelsElements, toggleAvailableHotelsContainer};
+export { formAvailableHotelsElements, toggleAvailableHotelsContainer };

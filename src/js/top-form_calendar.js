@@ -266,7 +266,6 @@ document.querySelectorAll('.cal_day-num-a').forEach((element, index) => {
           startDate_a = event.target;
           AddDayInSpan_a(startDate_a, selector);
         }
-        startDate_a.index_ = 10; //  Matrix index emulation to check month
       } else if (selector === 2) {
         if (!endDate_a) {
           //If start date is not choosing
@@ -277,7 +276,6 @@ document.querySelectorAll('.cal_day-num-a').forEach((element, index) => {
           endDate_a = event.target;
           AddDayInSpan_a(endDate_a, selector);
         }
-        endDate_a.index_ = 40; // Matrix index emulation to check month
       }
     }
   });

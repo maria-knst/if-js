@@ -14,9 +14,8 @@ export const months = [
   'December',
 ];
 
-export function getMonthIndexFrom(monthStr){
+export function getMonthIndexFrom(monthStr) {
   return months.indexOf(monthStr);
-
 }
 
 const makeCalendarMatrix = (daysInMonth, daysInWeek) => {

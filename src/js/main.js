@@ -1,15 +1,11 @@
 import {
+  availHotelsFlexContainer,
   formAvailableHotelsElements,
   toggleAvailableHotelsContainer,
-  availHotelsFlexContainer,
-} from './avail-hotels.js';
-import {
-  homesFlexContainer,
-  bubbleSort,
-  formHomesElements,
-} from './homes-guests-loves.js';
-import { today } from './top-form_calendar.js';
-import { getMonthIndexFrom, months } from './dates_work.js';
+} from "./available_hotels.js";
+import { bubbleSort, formHomesElements, homesFlexContainer } from "./homes_guests_loves.js";
+import { today } from "./top-form_calendar.js";
+import { getMonthIndexFrom } from "./dates_work.js";
 
 const getReadingInput = (element) => {
   if (element.parentElement.classList.contains('top-search-inputs')) {
@@ -49,7 +45,7 @@ const formDates = (selector) => {
   const dates = document.querySelectorAll(selector);
   const curMonth = dates[0].parentElement.previousElementSibling.innerHTML;
   const nextMonth = dates[1].parentElement.previousElementSibling.innerHTML;
-  const result = {
+  return {
     startDate: {
       date: dates[0].innerHTML,
       month: getMonthIndexFrom(curMonth.substring(0, curMonth.length - 5)), // Deleted year from string
@@ -61,7 +57,6 @@ const formDates = (selector) => {
       year: today.getFullYear(),
     },
   };
-  return result;
 };
 
 const getTimes = (datesObject) => {
@@ -75,14 +70,13 @@ const getTimes = (datesObject) => {
     datesObject.endDate.month,
     datesObject.endDate.date,
   ).getTime();
-  const res = {
+  return {
     startTime: startTime,
     endTime: endTime,
   };
-  return res;
 };
 
-const getCalendarsDays = (element) => {
+const getCalendarsDays = () => {
   const calendar_dates = formDates('.cal_clicked-day');
   return getTimes(calendar_dates);
 };
@@ -141,7 +135,7 @@ document.querySelectorAll('.top-search-button_clicked').forEach((element) => {
     const readingInput = getReadingInput(element);
     const extraOptions = getExtraOptionsInput(element);
     const searchValue = readingInput.value;
-    const calendarTimes = getCalendarsDays(element);
+    const calendarTimes = getCalendarsDays();
     makeRequest(searchValue, extraOptions, calendarTimes);
   });
 });
