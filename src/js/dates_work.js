@@ -14,6 +14,10 @@ export const months = [
   'December',
 ];
 
+export function getMonthIndexFrom(monthStr) {
+  return months.indexOf(monthStr);
+}
+
 const makeCalendarMatrix = (daysInMonth, daysInWeek) => {
   const matrix = new Array(Math.ceil(daysInMonth / 7));
   for (let i = 0; i < matrix.length; i++) {
